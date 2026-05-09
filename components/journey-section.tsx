@@ -12,7 +12,7 @@ const chapters = [
       "Five quiet questions, the kind you might actually want to answer. What you're studying, what you're stuck on, what you'd want from someone a year ahead.",
     note: "Application — 6 minutes",
     image: "/ucla2.jpg",
-    caption: "Powell Library, 11:47 PM",
+    caption: "Janss Steps, 11:47 PM",
   },
   {
     n: "II",
@@ -22,7 +22,7 @@ const chapters = [
       "Not an algorithm. Two of our coordinators read your application, compare it against our mentors, and pick the one who feels right. We get it wrong sometimes — and we re-pair, no questions asked.",
     note: "About a week of careful reading",
     image: "/ucla3.jpg",
-    caption: "Engineering VI courtyard, October",
+    caption: "Engineering V, October",
   },
   {
     n: "III",
@@ -32,7 +32,7 @@ const chapters = [
       "Your first meeting is on us. After that — a midterm review, a problem set debrief, a question about a research lab, an honest answer about which professors are kind. Whatever you need.",
     note: "Free coffee, indefinite ratio",
     image: "/ucla1.jpg",
-    caption: "Kerckhoff coffee house, 8:02 AM",
+    caption: "Royce Hall, 8:02 AM",
   },
   {
     n: "IV",
@@ -68,7 +68,7 @@ export function JourneySection() {
   }, []);
 
   return (
-    <section className="relative pt-32 md:pt-48">
+    <section id="journey" className="relative pt-32 md:pt-48">
       <div className="wrap">
         <div className="grid grid-cols-12 gap-x-6 md:gap-x-10">
           <div className="col-span-12 md:col-span-3">

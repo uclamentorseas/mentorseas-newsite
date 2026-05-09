@@ -38,7 +38,7 @@ export function MentorCard({
         <div className={`tape -top-2 ${index % 2 === 0 ? "left-8 -rotate-6" : "right-8 rotate-6"}`} />
 
         {/* Slide-up reveal */}
-        <div className="absolute inset-x-0 bottom-0 translate-y-full group-hover:translate-y-0 transition-transform duration-700 ease-[cubic-bezier(0.2,0.7,0.1,1)] bg-paper/95 backdrop-blur-[3px] border-t border-rule/60">
+        <div className="mentor-reveal absolute inset-x-0 bottom-0 bg-paper border-t border-rule/60">
           <div className={`px-5 ${isLarge ? "md:px-7 py-6" : "py-5"}`}>
             <p className={`text-ink-2 leading-[1.55] ${isLarge ? "text-[1.02rem] max-w-[40ch]" : "text-[0.93rem] max-w-[32ch]"}`}>
               {member.snippet}

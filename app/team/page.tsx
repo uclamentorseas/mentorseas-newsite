@@ -37,7 +37,7 @@ export default function TeamPage() {
               </p>
             </div>
             <div className="col-span-12 md:col-span-9">
-              <h1 className="serif text-[12vw] md:text-[7vw] leading-[0.96] tracking-[-0.024em] max-w-[18ch]">
+              <h1 className="serif text-[10vw] md:text-[5.6vw] xl:text-[4.6vw] leading-[0.98] tracking-[-0.022em] max-w-[18ch]">
                 Approachable strangers
                 <br />
                 <span className="serif-italic">who become friends</span> in
@@ -46,8 +46,8 @@ export default function TeamPage() {
               <p className="mt-10 max-w-[58ch] text-[1.05rem] leading-[1.65] text-ink-2">
                 MentorSEAS is run by fourteen students — two co-presidents and
                 three committees. We make pairings, run events, build the
-                tools, and answer your DMs at hours we won&apos;t admit to.
-                None of us are paid. We&apos;d do this anyway.
+                tools, and answer your DMs at hours we won't admit to.
+                None of us are paid. We'd do this anyway.
               </p>
             </div>
           </div>
@@ -79,15 +79,15 @@ export default function TeamPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-12 gap-x-6 gap-y-16 md:gap-x-10">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-14 md:gap-x-7 md:gap-y-20">
             {presidents.map((m, i) => (
               <div
                 key={m.slug}
-                className={`col-span-12 md:col-span-6 ${
-                  i === 1 ? "md:translate-y-12" : ""
+                className={`${i === 0 ? "lg:col-start-2" : ""} ${
+                  i % 2 === 1 ? "md:translate-y-10" : ""
                 }`}
               >
-                <MentorCard member={m} index={i} size="large" />
+                <MentorCard member={m} index={i} />
               </div>
             ))}
           </div>

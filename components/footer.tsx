@@ -35,7 +35,7 @@ export function Footer() {
             <div className="eyebrow mb-5">Reach Us</div>
             <ul className="space-y-2.5 text-[0.95rem]">
               <li><a className="link-quiet" href="mailto:hello@mentorseas.org">hello@mentorseas.org</a></li>
-              <li><a className="link-quiet" href="#">Instagram</a></li>
+              <li><a className="link-quiet" href="https://www.instagram.com/mentorseas/">Instagram</a></li>
               <li><a className="link-quiet" href="#">LinkedIn</a></li>
               <li><a className="link-quiet" href="#">Discord</a></li>
             </ul>
@@ -58,7 +58,7 @@ export function Footer() {
         <div className="rule mt-20" />
 
         <div className="mt-6 flex flex-col md:flex-row items-start md:items-end justify-between gap-4 text-[0.78rem] text-muted">
-          <div className="eyebrow">© MMXXVI MentorSEAS · A student initiative</div>
+          <div className="eyebrow">© 2026 MentorSEAS · A student initiative</div>
           <div className="flex items-baseline gap-6">
             <span className="eyebrow tabular">N 34.0689°</span>
             <span className="eyebrow tabular">W 118.4452°</span>
@@ -67,8 +67,8 @@ export function Footer() {
         </div>
 
         {/* big wordmark */}
-        <div className="mt-14 -mb-4 select-none overflow-hidden">
-          <div className="serif tracking-[-0.03em] leading-[0.88] text-ink/[0.07] text-[24vw] md:text-[16vw] whitespace-nowrap pr-[0.18em]">
+        <div className="@container mt-14 -mb-4 select-none overflow-hidden">
+          <div className="serif tracking-[-0.03em] leading-[0.88] text-ink/[0.07] text-[19.5cqi] whitespace-nowrap">
             Mentor<span className="serif-italic">SEAS</span>
           </div>
         </div>

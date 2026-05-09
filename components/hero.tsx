@@ -19,8 +19,7 @@ export function Hero() {
         <div className="grid grid-cols-12 gap-x-6 gap-y-10 md:gap-x-8">
           {/* Left: headline */}
           <div className="col-span-12 lg:col-span-8 relative">
-            <div className="rise rise-2 eyebrow mb-6">An essay in three movements</div>
-            <h1 className="rise rise-2 serif font-light text-[14vw] sm:text-[10vw] lg:text-[8.6vw] leading-[0.92] tracking-[-0.025em] text-ink">
+            <h1 className="rise rise-2 serif font-light text-[12vw] sm:text-[9vw] lg:text-[clamp(3.5rem,7vw,6.5rem)] leading-[0.92] tracking-[-0.025em] text-ink">
               Engineering
               <br />
               <span className="inline-flex items-center gap-4">
@@ -111,15 +110,17 @@ export function Hero() {
       {/* Bottom band */}
       <div className="wrap pb-10">
         <div className="flex items-center justify-between border-t border-rule/60 pt-4 rise rise-5">
-          <div className="hidden md:flex items-center gap-8 text-[0.78rem] text-muted">
+          <div className="hidden md:flex items-center gap-5 lg:gap-6 text-[0.78rem] text-muted">
             <span className="eyebrow">In this issue</span>
-            <span className="link-quiet">The pairing</span>
+            <a href="#about" className="link-quiet">Who we are</a>
             <span aria-hidden className="text-rule">·</span>
-            <span className="link-quiet">A scrapbook</span>
+            <a href="#journey" className="link-quiet">The process</a>
             <span aria-hidden className="text-rule">·</span>
-            <span className="link-quiet">36 organizations</span>
+            <a href="#community" className="link-quiet">A scrapbook</a>
             <span aria-hidden className="text-rule">·</span>
-            <span className="link-quiet">In their words</span>
+            <a href="#organizations" className="link-quiet">36 organizations</a>
+            <span aria-hidden className="text-rule">·</span>
+            <a href="#voices" className="link-quiet">In their words</a>
           </div>
           <ScrollCue />
         </div>

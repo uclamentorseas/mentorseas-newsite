@@ -55,7 +55,7 @@ const moments = [
 
 export function CommunitySection() {
   return (
-    <section className="relative pt-32 md:pt-48 bg-paper-2/70">
+    <section id="community" className="relative pt-32 md:pt-48 bg-paper-2/70">
       <div className="absolute inset-x-0 top-0 h-px bg-rule/60" />
       <div className="wrap">
         <div className="grid grid-cols-12 gap-x-6 md:gap-x-10 mb-16 md:mb-24">

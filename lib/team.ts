@@ -12,7 +12,7 @@ export type Member = {
   philosophy: string;
   wish: string;
   spot: string;
-  hobby: string;
+  funFact: string;
 };
 
 const portraits = ["/ucla1.jpg", "/ucla2.jpg", "/ucla3.jpg", "ivan.jpg", "/ucla-aerial.jpg"];
@@ -35,7 +35,7 @@ export const team: Member[] = [
     wish:
       "That you don’t need to have liked your first lab to keep going. I hated mine. I’m doing a Ph.D. in it now.",
     spot: "The bench by Inverted Fountain at 6 PM",
-    hobby: "Letterpress printing at the Hammer Museum",
+    funFact: "Letterpress printing at the Hammer Museum",
   },
   {
     slug: "marcus-wei",
@@ -52,7 +52,7 @@ export const team: Member[] = [
     wish:
       "That CS 31 is hard for everyone, that linear algebra is a personality trait, and that office hours are not a sign of weakness.",
     spot: "Engineering V atrium, north side",
-    hobby: "Restoring vintage Casio calculators",
+    funFact: "Restoring vintage Casio calculators",
   },
 
     // ── Tech ─────────────────────────────────────────────────────
@@ -71,7 +71,7 @@ export const team: Member[] = [
     wish:
       "Your GPA will be fine",
     spot: "Eclipse Gaming Lounge",
-    hobby: "Always on the hill...",
+    funFact: "Always on the hill...",
   },
   {
     slug: "ines-garcia",
@@ -88,7 +88,7 @@ export const team: Member[] = [
     wish:
       "That asking for help isn’t a debt. Mentors signed up because they wanted you to ask.",
     spot: "Royce Hall steps, golden hour",
-    hobby: "She makes excellent salsa macha",
+    funFact: "She makes excellent salsa macha",
   },
   {
     slug: "jamal-kuria",
@@ -105,7 +105,7 @@ export const team: Member[] = [
     wish:
       "That every metric in your life is a question, not a verdict.",
     spot: "Engineering IV roof, around dusk",
-    hobby: "Plays five-a-side at the IM field",
+    funFact: "Plays five-a-side at the IM field",
   },
   {
     slug: "ada-nguyen",
@@ -122,7 +122,7 @@ export const team: Member[] = [
     wish:
       "That you’ll fall in love with at least one tool well enough to argue with it.",
     spot: "Broad Art Center, 1st-floor corridor",
-    hobby: "Hand-binds zines of student work",
+    funFact: "Hand-binds zines of student work",
   },
 
   // ── Social & Engagement ──────────────────────────────────────
@@ -141,7 +141,7 @@ export const team: Member[] = [
     wish:
       "That your first friend group will not be your last, and that’s okay.",
     spot: "Royce Hall steps, golden hour",
-    hobby: "Films grainy super-8 of campus events",
+    funFact: "Films grainy super-8 of campus events",
   },
   {
     slug: "aanya-reddy",
@@ -158,7 +158,7 @@ export const team: Member[] = [
     wish:
       "That you’ll get one bad TA and one TA who changes the way you think. Both will be in the same quarter.",
     spot: "Powell, the booth with the broken outlet",
-    hobby: "Birding at the UCLA Botanical Garden",
+    funFact: "Birding at the UCLA Botanical Garden",
   },
   {
     slug: "chris-park",
@@ -175,7 +175,7 @@ export const team: Member[] = [
     wish:
       "That ‘fit’ is real, and worth waiting another week for.",
     spot: "Kerckhoff coffee, second-floor balcony",
-    hobby: "Builds analog synths from kits",
+    funFact: "Builds analog synths from kits",
   },
   {
     slug: "lila-brooks",
@@ -192,7 +192,7 @@ export const team: Member[] = [
     wish:
       "That you’ll regret not joining one club, and that you can still join it junior year.",
     spot: "Engineering VI patio, after 3 PM",
-    hobby: "35mm film, mostly black and white",
+    funFact: "35mm film, mostly black and white",
   },
 
     // ── Academic & Growth ────────────────────────────────────────
@@ -211,7 +211,7 @@ export const team: Member[] = [
     wish:
       "That a B+ in Math 33B is a perfectly nice grade.",
     spot: "Engineering IV, the old aerospace bookcase",
-    hobby: "Watercolor sketches of Westwood storefronts",
+    funFact: "Watercolor sketches of Westwood storefronts",
   },
   {
     slug: "owen-patel",
@@ -228,7 +228,7 @@ export const team: Member[] = [
     wish:
       "That recursion clicks suddenly, usually around 2 AM, and there’s no shame in waiting until then.",
     spot: "Powell, the table closest to the printer",
-    hobby: "Long-distance trail running in the Santa Monicas",
+    funFact: "Long-distance trail running in the Santa Monicas",
   },
   {
     slug: "mei-tanaka",
@@ -245,7 +245,7 @@ export const team: Member[] = [
     wish:
       "That research is just chores you happen to find interesting.",
     spot: "Engineering V 4th floor, by the printer that always works",
-    hobby: "Reads novels on the Janss steps before sunset",
+    funFact: "Reads novels on the Janss steps before sunset",
   },
   {
     slug: "daniel-rivera",
@@ -262,7 +262,7 @@ export const team: Member[] = [
     wish:
       "That you can switch out of pre-med without anyone’s permission.",
     spot: "Math Sciences 6th floor lounge",
-    hobby: "Salsa social at the Wooden Center, Wednesdays",
+    funFact: "Salsa social at the Wooden Center, Wednesdays",
   },
 ];
 

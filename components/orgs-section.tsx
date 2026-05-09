@@ -3,7 +3,7 @@ import { orgs } from "@/lib/orgs";
 
 export function OrgsSection() {
   return (
-    <section className="relative pt-32 md:pt-48">
+    <section id="organizations" className="relative pt-32 md:pt-48">
       <div className="wrap">
         <div className="grid grid-cols-12 gap-x-6 md:gap-x-10 mb-16 md:mb-24">
           <div className="col-span-12 md:col-span-3">

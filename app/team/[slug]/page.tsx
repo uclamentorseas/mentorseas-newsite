@@ -78,30 +78,25 @@ export default async function MemberPage(props: PageProps<"/team/[slug]">) {
               </p>
 
               <div className="mt-12">
-                <div className="eyebrow mb-3">Mentorship philosophy</div>
+                <div className="eyebrow mb-3">
+                  What I wish I knew freshman year
+                </div>
                 <p className="serif text-[1.6rem] md:text-[2rem] leading-[1.25] text-ink max-w-[28ch]">
-                  &ldquo;{m.philosophy}&rdquo;
+                  &ldquo;{m.wish}&rdquo;
                 </p>
               </div>
 
               <div className="mt-14 grid grid-cols-12 gap-y-10 md:gap-x-8">
                 <div className="col-span-12 md:col-span-7">
-                  <div className="eyebrow mb-3">
-                    What I wish I knew freshman year
-                  </div>
+                  <div className="eyebrow mb-3">Fun fact</div>
                   <p className="text-[1.02rem] leading-[1.65] text-ink-2">
-                    {m.wish}
+                    {m.funFact}
                   </p>
                 </div>
                 <div className="col-span-6 md:col-span-5">
                   <div className="eyebrow mb-2">Favorite spot</div>
                   <p className="text-[0.95rem] text-ink-2 leading-snug">
                     {m.spot}
-                  </p>
-
-                  <div className="eyebrow mb-2 mt-7">When not on campus</div>
-                  <p className="text-[0.95rem] text-ink-2 leading-snug">
-                    {m.hobby}
                   </p>
                 </div>
               </div>
