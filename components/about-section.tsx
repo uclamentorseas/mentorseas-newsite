@@ -19,7 +19,7 @@ export function AboutSection() {
           <div className="col-span-12 md:col-span-9 md:col-start-4">
             <h2 className="serif text-[10vw] md:text-[5.6vw] xl:text-[4.6vw] leading-[0.98] tracking-[-0.02em] text-ink max-w-[14ch]">
               Mentorship that doesn&apos;t feel{" "}
-              <span className="serif-italic">institutional.</span>
+              <span className="text-accent">institutional.</span>
             </h2>
 
             <div className="mt-12 grid grid-cols-12 gap-x-6 gap-y-8 md:gap-x-10">
@@ -34,31 +34,7 @@ export function AboutSection() {
                 explain something a professor had ten seconds for.
               </p>
 
-              <aside className="col-span-12 md:col-span-5 md:pl-8 md:border-l md:border-rule/60">
-                <p className="serif serif-italic text-2xl md:text-[1.65rem] leading-[1.25] text-ink-2 max-w-[24ch]">
-                  &ldquo;The first person who told me Math 31A was hard for
-                  everyone — that&apos;s the person who kept me here.&rdquo;
-                </p>
-                <p className="mt-5 eyebrow">
-                  — Priya M., MS BioE &lsquo;25
-                </p>
-
-                <ul className="mt-10 space-y-3 text-[0.95rem] text-ink-2">
-                  {[
-                    "1:1 mentor pairings — not group panels",
-                    "Matched by major, by interest, by vibe",
-                    "Weekly check-ins, no agenda required",
-                    "Free coffee at Kerckhoff (mostly)",
-                  ].map((item, i) => (
-                    <li key={item} className="flex items-baseline gap-3">
-                      <span className="eyebrow tabular shrink-0">
-                        0{i + 1}
-                      </span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </aside>
+             
             </div>
           </div>
         </div>

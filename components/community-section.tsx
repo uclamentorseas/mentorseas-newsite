@@ -69,7 +69,7 @@ export function CommunitySection() {
             <h2 className="serif text-[10vw] md:text-[5.6vw] xl:text-[4.6vw] leading-[0.98] tracking-[-0.02em] text-ink max-w-[16ch]">
               Photographs we keep
               <br />
-              <span className="serif-italic">on the fridge.</span>
+              <span className="text-accent">on the fridge.</span>
             </h2>
             <p className="mt-8 max-w-[52ch] text-[1.05rem] leading-[1.65] text-ink-2">
               Every quarter we ask our mentors to hand in a photo. Some are
@@ -104,7 +104,7 @@ export function CommunitySection() {
                 <span className="eyebrow tabular shrink-0">
                   {String(i + 1).padStart(2, "0")} · {m.date}
                 </span>
-                <span className="serif-italic text-[1rem] md:text-[1.05rem] text-ink-2 leading-snug">
+                <span className="serif text-[1rem] md:text-[1.05rem] text-ink-2 leading-snug">
                   {m.caption}
                 </span>
               </figcaption>

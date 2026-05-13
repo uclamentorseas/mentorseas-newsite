@@ -6,69 +6,104 @@ import { useEffect, useRef, useState } from "react";
 const chapters = [
   {
     n: "I",
-    label: "Apply",
-    title: "Tell us who you are.",
+    label: "Sign up",
+    title: "Two forms, one community.",
     body:
-      "Five quiet questions, the kind you might actually want to answer. What you're studying, what you're stuck on, what you'd want from someone a year ahead.",
-    note: "Application — 6 minutes",
+      "Sign-up lives on a single page. Students fill out one Google Form, mentors fill out another — a few quick questions about who you are and what you're hoping for. That's the whole intake.",
+    note: "Sign-up page — Google Forms, ~5 minutes",
     image: "/ucla2.jpg",
     caption: "Janss Steps, 11:47 PM",
   },
   {
     n: "II",
-    label: "Match",
-    title: "We pair you, by hand.",
-    body:
-      "Not an algorithm. Two of our coordinators read your application, compare it against our mentors, and pick the one who feels right. We get it wrong sometimes — and we re-pair, no questions asked.",
-    note: "About a week of careful reading",
-    image: "/ucla3.jpg",
-    caption: "Engineering V, October",
-  },
-  {
-    n: "III",
     label: "Meet",
-    title: "Coffee, then a conversation.",
+    title: "Engineering Welcome Day.",
     body:
-      "Your first meeting is on us. After that — a midterm review, a problem set debrief, a question about a research lab, an honest answer about which professors are kind. Whatever you need.",
-    note: "Free coffee, indefinite ratio",
+      "Your first hello happens in person. At the start of the year, every mentee meets their mentor at Engineering Welcome Day — no awkward DMs, no scheduling tag. You walk in a name on a form and walk out with someone who's been there.",
+    note: "Engineering Welcome Day — early fall",
     image: "/ucla1.jpg",
     caption: "Royce Hall, 8:02 AM",
   },
   {
-    n: "IV",
-    label: "Belong",
-    title: "Find the people behind the people.",
+    n: "III",
+    label: "Stay in touch",
+    title: "An open door, all year.",
     body:
-      "Your mentor knows their friends, who know clubs, who know labs, who know labs that are hiring. Quietly, the campus stops feeling like a brochure and starts feeling like a place you live.",
-    note: "By spring, you'll have a study group",
-    image: "/ucla-aerial.jpg",
-    caption: "Westwood from the Inverted Fountain",
+      "After Welcome Day, your mentor is yours. A midterm panic, a problem set debrief, a question about a research lab, an honest answer about which professors are kind — reach out whenever you need them. They've been there.",
+    note: "Throughout the year — as often as you need",
+    image: "/ucla3.jpg",
+    caption: "Engineering V, October",
   },
 ];
 
 export function JourneySection() {
-  const [active, setActive] = useState(0);
+  // Continuous scroll-linked progress through the chapter list (0 → chapters.length - 1).
+  // The image stack crossfades smoothly based on this value, so what you see on the
+  // left tracks where you actually are on the right.
+  const [progress, setProgress] = useState(0);
   const refs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
-    const observers = refs.current.map((el, i) => {
-      if (!el) return null;
-      const o = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((e) => {
-            if (e.isIntersecting && e.intersectionRatio > 0.4) setActive(i);
-          });
-        },
-        { threshold: [0, 0.4, 0.8], rootMargin: "-30% 0px -30% 0px" },
-      );
-      o.observe(el);
-      return o;
-    });
-    return () => observers.forEach((o) => o?.disconnect());
+    let raf = 0;
+
+    const update = () => {
+      // Pivot line: the y-coordinate in the viewport that decides "where am I".
+      // 42% from the top sits roughly at the center of the sticky image.
+      const pivot = window.innerHeight * 0.42;
+
+      // Compute each chapter's center y relative to the viewport.
+      const centers = refs.current.map((el) => {
+        if (!el) return null;
+        const r = el.getBoundingClientRect();
+        return r.top + r.height / 2;
+      });
+
+      // Walk the centers and find which two chapters bracket the pivot,
+      // then interpolate continuously between their indices.
+      let next = 0;
+      const first = centers[0];
+      const last = centers[centers.length - 1];
+      if (first == null || last == null) return;
+
+      if (first >= pivot) {
+        next = 0;
+      } else if (last <= pivot) {
+        next = centers.length - 1;
+      } else {
+        for (let i = 0; i < centers.length - 1; i++) {
+          const a = centers[i];
+          const b = centers[i + 1];
+          if (a == null || b == null) continue;
+          if (a <= pivot && b >= pivot) {
+            const span = b - a;
+            next = span > 0 ? i + (pivot - a) / span : i;
+            break;
+          }
+        }
+      }
+
+      setProgress(next);
+    };
+
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
   }, []);
 
+  const active = Math.round(progress);
+
   return (
-    <section id="journey" className="relative pt-32 md:pt-48">
+    <section id="journey" className="relative pt-32 md:pt-48 pb-32 md:pb-56">
       <div className="wrap">
         <div className="grid grid-cols-12 gap-x-6 md:gap-x-10">
           <div className="col-span-12 md:col-span-3">
@@ -86,9 +121,9 @@ export function JourneySection() {
 
           <div className="col-span-12 md:col-span-9 md:col-start-4">
             <h2 className="serif text-[10vw] md:text-[5.6vw] xl:text-[4.6vw] leading-[0.98] tracking-[-0.02em] text-ink max-w-[16ch]">
-              A four-step joining,
+              A three-step path,
               <br />
-              <span className="serif-italic">told slowly.</span>
+              <span className="text-accent">told plainly.</span>
             </h2>
           </div>
         </div>
@@ -96,7 +131,12 @@ export function JourneySection() {
         <div className="mt-16 md:mt-28 grid grid-cols-12 gap-x-6 md:gap-x-10">
           {/* Left: image rail */}
           <div className="hidden md:block md:col-span-5 md:col-start-1">
-            <div className="sticky top-28">
+            <div
+              className="sticky top-28 will-change-transform"
+              style={{
+                transform: `translate3d(0, ${progress * 80}px, 0)`,
+              }}
+            >
               <div className="relative photo aspect-[4/5]">
                 {chapters.map((c, i) => (
                   <Image
@@ -157,11 +197,6 @@ export function JourneySection() {
                     {c.n}.
                   </span>
                   <span className="eyebrow">{c.label}</span>
-                  <span
-                    className={`tick-pulse h-1.5 w-1.5 rounded-full bg-accent transition-opacity duration-500 ${
-                      i === active ? "opacity-100" : "opacity-0"
-                    }`}
-                  />
                 </div>
                 <h3 className="serif text-4xl md:text-[3.2rem] leading-[1.02] tracking-tight text-ink max-w-[14ch]">
                   {c.title}
@@ -170,6 +205,9 @@ export function JourneySection() {
                   {c.body}
                 </p>
                 <p className="mt-6 eyebrow text-muted">{c.note}</p>
+                {i === chapters.length - 1 && (
+                  <div className="hidden md:block h-40" aria-hidden />
+                )}
 
                 {/* Mobile inline image */}
                 <div className="md:hidden mt-8 relative photo aspect-[4/3]">

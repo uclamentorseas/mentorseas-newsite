@@ -11,12 +11,14 @@
   --color-rule: #c8bda7;
   --color-accent: #2774ae;
   --color-accent-deep: #1d4f76;
+  --color-accent-soft: #8ec5e8;
   --color-gold: #b08930;
   --color-gold-soft: #d4a85a;
 
   --font-sans: var(--font-sans), ui-sans-serif, system-ui;
   --font-serif: var(--font-serif), ui-serif, Georgia, serif;
   --font-mono: var(--font-mono), ui-monospace, monospace;
+  --font-tech: var(--font-tech), ui-sans-serif, system-ui;
 }
 
 :root {
@@ -79,6 +81,57 @@ body {
   font-style: italic;
   font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
 }
+
+.tech {
+  font-family: var(--font-tech);
+  letter-spacing: -0.02em;
+  font-feature-settings: "ss01", "ss02";
+}
+.tech-mono {
+  font-family: var(--font-mono);
+  letter-spacing: 0.01em;
+}
+
+/* Typing caret */
+.caret {
+  display: inline-block;
+  width: 0.55ch;
+  margin-left: 2px;
+  background: currentColor;
+  animation: caret-blink 1.05s steps(1) infinite;
+  transform: translateY(2px);
+}
+@keyframes caret-blink {
+  0%, 49%   { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+/* Blueprint grid overlay for engineering feel */
+.blueprint-grid {
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.06) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+.blueprint-grid-dark {
+  background-image:
+    linear-gradient(to right, rgba(26,24,20,0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(26,24,20,0.06) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+/* Engineering corner brackets */
+.corner-frame::before,
+.corner-frame::after {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border: 1px solid currentColor;
+  opacity: 0.65;
+}
+.corner-frame::before { top: 0; left: 0; border-right: 0; border-bottom: 0; }
+.corner-frame::after  { bottom: 0; right: 0; border-left: 0; border-top: 0; }
 
 .rule {
   height: 1px;
@@ -194,3 +247,4 @@ body {
 
 /* big numerals */
 .tabular { font-variant-numeric: tabular-nums; }
+

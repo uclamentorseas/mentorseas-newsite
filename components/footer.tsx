@@ -11,7 +11,7 @@ export function Footer() {
             <h3 className="serif text-5xl md:text-6xl leading-[0.95] tracking-tight">
               Made by Bruins,
               <br />
-              <span className="serif-italic">for Bruins.</span>
+              <span className="text-accent">for Bruins.</span>
             </h3>
             <p className="mt-6 max-w-sm text-[0.95rem] text-muted leading-relaxed">
               MentorSEAS is a student-led mentorship organization within the
@@ -69,7 +69,7 @@ export function Footer() {
         {/* big wordmark */}
         <div className="@container mt-14 -mb-4 select-none overflow-hidden">
           <div className="serif tracking-[-0.03em] leading-[0.88] text-ink/[0.07] text-[19.5cqi] whitespace-nowrap">
-            Mentor<span className="serif-italic">SEAS</span>
+            Mentor<span className="text-accent/40">SEAS</span>
           </div>
         </div>
       </div>

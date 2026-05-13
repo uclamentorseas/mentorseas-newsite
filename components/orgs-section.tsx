@@ -16,7 +16,7 @@ export function OrgsSection() {
             <h2 className="serif text-[10vw] md:text-[5.6vw] xl:text-[4.6vw] leading-[0.98] tracking-[-0.02em] text-ink max-w-[16ch]">
               Thirty-six rooms,
               <br />
-              <span className="serif-italic">one of them yours.</span>
+              <span className="text-accent">one of them yours.</span>
             </h2>
             <p className="mt-8 max-w-[52ch] text-[1.05rem] leading-[1.65] text-ink-2">
               UCLA Engineering has more student organizations than orientation
