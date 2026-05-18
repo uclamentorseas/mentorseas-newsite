@@ -38,7 +38,8 @@ export default async function MemberPage(props: PageProps<"/team/[slug]">) {
               ← All contributors
             </Link>
             <div className="eyebrow tabular">
-              № {String(idx + 1).padStart(2, "0")} / {String(team.length).padStart(2, "0")}
+              № {String(idx + 1).padStart(2, "0")} /{" "}
+              {String(team.length).padStart(2, "0")}
             </div>
             <div className="eyebrow">{m.committee}</div>
           </div>
@@ -73,10 +74,24 @@ export default async function MemberPage(props: PageProps<"/team/[slug]">) {
               <h1 className="serif text-[12vw] md:text-[6.4vw] xl:text-[5.2vw] leading-[0.96] tracking-[-0.024em]">
                 {m.name}
               </h1>
-              <p className="mt-4 serif-italic text-2xl text-ink-2">
-                {m.major}
-              </p>
-
+              <p className="mt-4 serif-italic text-2xl text-ink-2">{m.major}</p>
+              {m.linkedin && (
+                <a
+                  href={m.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-5 inline-flex items-center hover:opacity-70 transition-opacity"
+                  aria-label={`${m.name} LinkedIn`}
+                >
+                  <Image
+                    src="/linkedinLogo.png"
+                    alt="LinkedIn"
+                    width={50}
+                    height={50}
+                    className="object-contain"
+                  />
+                </a>
+              )}
               <div className="mt-12">
                 <div className="eyebrow mb-3">
                   What I wish I knew freshman year
@@ -93,12 +108,12 @@ export default async function MemberPage(props: PageProps<"/team/[slug]">) {
                     {m.funFact}
                   </p>
                 </div>
-                <div className="col-span-6 md:col-span-5">
+                {/* <div className="col-span-6 md:col-span-5">
                   <div className="eyebrow mb-2">Favorite spot</div>
                   <p className="text-[0.95rem] text-ink-2 leading-snug">
                     {m.spot}
                   </p>
-                </div>
+                </div> */}
               </div>
 
               <div className="mt-14">
