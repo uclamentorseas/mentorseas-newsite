@@ -5,7 +5,6 @@ export type Org = {
   beginnerFriendly?: boolean;
   meets: string;
   founded: string;
-  website: string;
 };
 
 export const orgs: Org[] = [
@@ -17,7 +16,6 @@ export const orgs: Org[] = [
     beginnerFriendly: true,
     meets: "Tues · Engineering IV Shop",
     founded: "1987",
-    website: "https://www.bruinracing.org/",
   },
   {
     name: "ACM at UCLA",
@@ -27,7 +25,6 @@ export const orgs: Org[] = [
     beginnerFriendly: true,
     meets: "Wed · Engineering VI 289",
     founded: "1969",
-    website: "https://www.uclaacm.com",
   },
   {
     name: "IEEE",
@@ -36,17 +33,15 @@ export const orgs: Org[] = [
     category: "Build",
     meets: "Mon · Engineering IV 17",
     founded: "1968",
-    website: "https://ieeebruins.com",
   },
   {
     name: "Society of Women Engineers",
     blurb:
-      "A long, careful network of women in engineering — the kind of place where \"you'll figure it out\" is not the answer to anything.",
+      "A long, careful network of women in engineering — the kind of place where “you’ll figure it out” is not the answer to anything.",
     category: "Identity",
     beginnerFriendly: true,
     meets: "Thurs · Boelter 4760",
     founded: "1971",
-    website: "https://ucla.swe.org/",
   },
   {
     name: "NSBE",
@@ -55,16 +50,14 @@ export const orgs: Org[] = [
     category: "Identity",
     meets: "Tues · Engineering VI 105",
     founded: "1976",
-    website: "https://nsbebruins.wixsite.com/nsbe",
   },
   {
     name: "SHPE",
     blurb:
-      "Society of Hispanic Professional Engineers — first-gen energy, professional dev, and a Dia de los Muertos potluck that shouldn't be missed.",
+      "Society of Hispanic Professional Engineers — first-gen energy, professional dev, and a Día de los Muertos potluck that shouldn’t be missed.",
     category: "Identity",
     meets: "Wed · Boelter 3400",
     founded: "1979",
-    website: "https://uclasoles.org/",
   },
   {
     name: "Rocket Project",
@@ -73,17 +66,15 @@ export const orgs: Org[] = [
     category: "Compete",
     meets: "Sat · Engineering IV Roof Lab",
     founded: "2003",
-    website: "http://rocketproject.seas.ucla.edu/",
   },
   {
     name: "Bruin AI",
     blurb:
-      "Reading group, project tracks, and a steadfast refusal to put \"AI\" in the name of every demo.",
+      "Reading group, project tracks, and a steadfast refusal to put “AI” in the name of every demo.",
     category: "Research",
     beginnerFriendly: true,
     meets: "Fri · Math Sciences 6627",
     founded: "2017",
-    website: "https://bruinai.org/",
   },
   {
     name: "UCLA Bioengineering Society",
@@ -92,16 +83,14 @@ export const orgs: Org[] = [
     category: "Research",
     meets: "Tues · Engineering V 5121",
     founded: "1995",
-    website: "https://bmes.seas.ucla.edu",
   },
   {
     name: "Theta Tau",
     blurb:
-      "Co-ed professional engineering fraternity. Fewer rituals than you'd expect; more career fairs than you'd think.",
+      "Co-ed professional engineering fraternity. Fewer rituals than you’d expect; more career fairs than you’d think.",
     category: "Industry",
     meets: "Sun · Engineering VI 200",
     founded: "1907",
-    website: "http://www.thetataubruins.org/",
   },
 ];
 

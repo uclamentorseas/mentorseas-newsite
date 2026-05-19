@@ -128,10 +128,8 @@ export default function OrganizationsPage() {
             <ul className="divide-y divide-rule/60 border-y border-rule/60">
               {filtered.map((o, i) => (
                 <li key={o.name} className="group">
-                  <a
-                    href={o.website}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <Link
+                    href="/signup"
                     className="grid grid-cols-12 gap-4 items-baseline py-7 transition-colors"
                   >
                     <span className="col-span-1 hidden md:block eyebrow tabular text-muted">
@@ -152,7 +150,7 @@ export default function OrganizationsPage() {
                     <span className="hidden md:block md:col-span-2 text-[0.85rem] text-ink-2 leading-snug text-right">
                       {o.meets}
                     </span>
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
