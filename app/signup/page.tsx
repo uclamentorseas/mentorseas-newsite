@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 
@@ -50,17 +50,19 @@ const vibes = [
   "Honestly, anyone — I trust you.",
 ];
 
-function readInitialRole(): Answers["role"] {
-  if (typeof window === "undefined") return "";
-  const r = new URLSearchParams(window.location.search).get("role");
-  return r === "mentor" ? "mentor" : "";
-}
+const MENTEE_AUTO_ASSIGN_MESSAGE =
+  "You will be given one automatically! Every single incoming engineering student is assigned a mentor from their major. This mentor can give you a upperclassman's perspective on the best ways to navigate your exciting first year of college.";
+
+const MENTOR_FORM_EMBED_URL =
+  "https://docs.google.com/forms/d/e/1FAIpQLSfqhJ3Q_ZhJ7EhQEHHpJOt98bjpPGUSsDY7ano6U0EV-YphRA/viewform?embedded=true";
 
 export default function SignupPage() {
-  const initialRole = readInitialRole();
-  const [step, setStep] = useState(initialRole === "mentor" ? 1 : 0);
-  const [a, setA] = useState<Answers>({ ...blank, role: initialRole });
+  const [step, setStep] = useState(0);
+  const [a, setA] = useState<Answers>({ ...blank, role: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [showMenteeInfo, setShowMenteeInfo] = useState(false);
+  const [showMentorForm, setShowMentorForm] = useState(false);
+  const [hydrated, setHydrated] = useState(false);
 
   const steps = useMemo(
     () => [
@@ -112,10 +114,46 @@ export default function SignupPage() {
   const total = steps.length;
   const cur = steps[step];
   const progress = ((step + (submitted ? 1 : 0)) / total) * 100;
+  const stepComplete = cur.valid();
+  const blockContinue = !stepComplete || !hydrated;
+
+  function finishMentorFlow() {
+    setShowMentorForm(false);
+    setSubmitted(true);
+    setA((prev) => ({ ...prev, role: "mentor" }));
+  }
 
   function handleSubmit() {
     setSubmitted(true);
   }
+
+  useEffect(() => {
+    setHydrated(true);
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("mentor_thanks") === "1") {
+      finishMentorFlow();
+    }
+  }, []);
+
+  // Best-effort: Google may postMessage on submit; iframe load after first paint is unreliable cross-origin.
+  useEffect(() => {
+    if (!showMentorForm) return;
+
+    function onMessage(event: MessageEvent) {
+      if (event.origin !== "https://docs.google.com") return;
+      const data = event.data;
+      if (
+        data === "submission" ||
+        (typeof data === "string" &&
+          (data.includes("formResponse") || data.includes("submitted")))
+      ) {
+        finishMentorFlow();
+      }
+    }
+
+    window.addEventListener("message", onMessage);
+    return () => window.removeEventListener("message", onMessage);
+  }, [showMentorForm]);
 
   return (
     <>
@@ -162,6 +200,8 @@ export default function SignupPage() {
                       alt=""
                       fill
                       sizes="280px"
+                      loading="eager"
+                      priority
                       className="object-cover"
                     />
                     <div className="tape -top-2 left-8 -rotate-6" />
@@ -172,7 +212,70 @@ export default function SignupPage() {
             </aside>
 
             <div className="col-span-12 md:col-span-8">
-              {!submitted ? (
+              {showMentorForm ? (
+                <div className="rise">
+                  <div className="eyebrow mb-6">Become a mentor</div>
+                  <p className="max-w-[52ch] text-[1.05rem] leading-[1.65] text-ink-2 mb-8">
+                    Complete the application below. When you&apos;re finished, press Continue
+                    for your confirmation.
+                  </p>
+                  <div className="rounded-2xl border border-rule/80 overflow-hidden bg-paper shadow-sm">
+                    <iframe
+                      src={MENTOR_FORM_EMBED_URL}
+                      title="Mentor application"
+                      className="w-full min-h-[70vh] md:min-h-[820px] border-0"
+                    />
+                  </div>
+                  <div className="mt-10 flex flex-wrap items-center gap-4">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setShowMentorForm(false);
+                        setA({ ...blank, role: "" });
+                      }}
+                      className="link-quiet text-[0.95rem] text-muted"
+                    >
+                      ← Back
+                    </button>
+                    <button
+                      type="button"
+                      onClick={finishMentorFlow}
+                      className="group inline-flex items-center gap-3 rounded-full bg-ink text-paper pl-5 pr-4 py-3 text-[0.95rem] tracking-tight transition-all hover:bg-accent"
+                    >
+                      Continue
+                      <span className="grid place-items-center w-7 h-7 rounded-full bg-paper/15 transition-transform duration-500 group-hover:translate-x-1">
+                        <svg width="11" height="11" viewBox="0 0 11 11">
+                          <path
+                            d="M2 5.5h6.5M5.5 2.5l3 3-3 3"
+                            stroke="currentColor"
+                            strokeWidth="1.2"
+                            fill="none"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              ) : showMenteeInfo ? (
+                <div className="rise">
+                  <div className="eyebrow mb-6">Find a mentor</div>
+                  <p className="max-w-[52ch] text-[1.05rem] leading-[1.7] text-ink-2">
+                    {MENTEE_AUTO_ASSIGN_MESSAGE}
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setShowMenteeInfo(false);
+                      setA({ ...blank, role: "" });
+                    }}
+                    className="link-quiet mt-10 text-[0.95rem] text-muted"
+                  >
+                    ← Choose a different path
+                  </button>
+                </div>
+              ) : !submitted ? (
                 <div key={step} className="rise">
                   <div className="flex items-center gap-3 mb-6">
                     <span className="eyebrow tabular">Q. {String(step + 1).padStart(2, "0")}</span>
@@ -192,22 +295,32 @@ export default function SignupPage() {
                             { v: "mentee", t: "Find a mentor", d: "I'm looking for someone a year or two ahead." },
                             { v: "mentor", t: "Become a mentor", d: "I want to be that person for someone." },
                           ] as const
-                        ).map((opt) => (
-                          <button
-                            key={opt.v}
-                            onClick={() => setA({ ...a, role: opt.v })}
-                            className={`text-left p-5 rounded-2xl border transition-all ${
-                              a.role === opt.v
-                                ? "border-ink bg-ink text-paper"
-                                : "border-rule/80 hover:border-ink"
-                            }`}
-                          >
-                            <div className="serif text-2xl mb-2">{opt.t}</div>
-                            <div className={`text-[0.92rem] ${a.role === opt.v ? "text-paper/70" : "text-muted"}`}>
-                              {opt.d}
-                            </div>
-                          </button>
-                        ))}
+                        ).map((opt) => {
+                          const isMentor = opt.v === "mentor";
+                          return (
+                            <button
+                              key={opt.v}
+                              onClick={() => {
+                                // Continue on step 0 opens the mentor form or mentee info message.
+                                if (isMentor) {
+                                  setA({ ...a, role: "mentor" });
+                                } else {
+                                  setA({ ...a, role: "mentee" });
+                                }
+                              }}
+                              className={`text-left p-5 rounded-2xl border transition-all ${
+                                a.role === opt.v
+                                  ? "border-ink bg-ink text-paper"
+                                  : "border-rule/80 hover:border-ink"
+                              }`}
+                            >
+                              <div className="serif text-2xl mb-2">{opt.t}</div>
+                              <div className={`text-[0.92rem] ${a.role === opt.v ? "text-paper/70" : "text-muted"}`}>
+                                {opt.d}
+                              </div>
+                            </button>
+                          );
+                        })}
                       </div>
                     )}
 
@@ -288,9 +401,25 @@ export default function SignupPage() {
                     <div className="flex-1" />
                     {step < total - 1 ? (
                       <button
-                        disabled={!cur.valid()}
-                        onClick={() => setStep(step + 1)}
-                        className="group inline-flex items-center gap-3 rounded-full bg-ink text-paper pl-5 pr-4 py-3 text-[0.95rem] tracking-tight transition-all hover:bg-accent disabled:bg-rule disabled:text-paper/70 disabled:cursor-not-allowed"
+                        {...(hydrated ? { disabled: !stepComplete } : {})}
+                        aria-disabled={blockContinue}
+                        onClick={() => {
+                          if (blockContinue) return;
+                          // If we're on the role question and the user picked
+                          // mentor, open the external form immediately.
+                          if (step === 0 && a.role === "mentor") {
+                            setShowMentorForm(true);
+                          } else if (step === 0 && a.role === "mentee") {
+                            setShowMenteeInfo(true);
+                          } else {
+                            setStep(step + 1);
+                          }
+                        }}
+                        className={`group inline-flex items-center gap-3 rounded-full pl-5 pr-4 py-3 text-[0.95rem] tracking-tight transition-all ${
+                          blockContinue
+                            ? "bg-rule text-paper/70 cursor-not-allowed"
+                            : "bg-ink text-paper hover:bg-accent"
+                        }`}
                       >
                         Continue
                         <span className="grid place-items-center w-7 h-7 rounded-full bg-paper/15 transition-transform duration-500 group-enabled:group-hover:translate-x-1">
@@ -299,9 +428,17 @@ export default function SignupPage() {
                       </button>
                     ) : (
                       <button
-                        disabled={!cur.valid()}
-                        onClick={handleSubmit}
-                        className="inline-flex items-center gap-3 rounded-full bg-ink text-paper pl-5 pr-4 py-3 text-[0.95rem] hover:bg-accent transition-colors disabled:bg-rule disabled:cursor-not-allowed"
+                        {...(hydrated ? { disabled: !stepComplete } : {})}
+                        aria-disabled={blockContinue}
+                        onClick={() => {
+                          if (blockContinue) return;
+                          handleSubmit();
+                        }}
+                        className={`inline-flex items-center gap-3 rounded-full pl-5 pr-4 py-3 text-[0.95rem] transition-colors ${
+                          blockContinue
+                            ? "bg-rule text-paper/70 cursor-not-allowed"
+                            : "bg-ink text-paper hover:bg-accent"
+                        }`}
                       >
                         Send it in
                         <span aria-hidden>↗</span>
