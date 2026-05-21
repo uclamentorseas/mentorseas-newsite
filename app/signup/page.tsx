@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useMemo, useState, useEffect, useRef } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 
@@ -53,22 +53,16 @@ const vibes = [
 const MENTEE_AUTO_ASSIGN_MESSAGE =
   "You will be given one automatically! Every single incoming engineering student is assigned a mentor from their major. This mentor can give you a upperclassman's perspective on the best ways to navigate your exciting first year of college.";
 
-function openExternalForm(url: string): boolean {
-  const w = window.open(url, "_blank");
-  if (!w) return false;
-  w.opener = null;
-  return true;
-}
+const MENTOR_FORM_EMBED_URL =
+  "https://docs.google.com/forms/d/e/1FAIpQLSfqhJ3Q_ZhJ7EhQEHHpJOt98bjpPGUSsDY7ano6U0EV-YphRA/viewform?embedded=true";
 
 export default function SignupPage() {
   const [step, setStep] = useState(0);
   const [a, setA] = useState<Answers>({ ...blank, role: "" });
   const [submitted, setSubmitted] = useState(false);
   const [showMenteeInfo, setShowMenteeInfo] = useState(false);
-  const [popupBlocked, setPopupBlocked] = useState(false);
+  const [showMentorForm, setShowMentorForm] = useState(false);
   const [hydrated, setHydrated] = useState(false);
-  const mentorFormOpening = useRef(false);
-  const mentorFormUrl = "https://forms.gle/4Y6adp3d1BaJKYhc6";
 
   const steps = useMemo(
     () => [
@@ -123,25 +117,13 @@ export default function SignupPage() {
   const stepComplete = cur.valid();
   const blockContinue = !stepComplete || !hydrated;
 
-  function openMentorForm() {
-    if (mentorFormOpening.current) return;
-    mentorFormOpening.current = true;
-
-    if (openExternalForm(mentorFormUrl)) {
-      setSubmitted(true);
-      setPopupBlocked(false);
-      return;
-    }
-
-    mentorFormOpening.current = false;
-    setPopupBlocked(true);
+  function finishMentorFlow() {
+    setShowMentorForm(false);
+    setSubmitted(true);
+    setA((prev) => ({ ...prev, role: "mentor" }));
   }
 
   function handleSubmit() {
-    if (a.role === "mentor") {
-      openMentorForm();
-      return;
-    }
     setSubmitted(true);
   }
 
@@ -149,10 +131,29 @@ export default function SignupPage() {
     setHydrated(true);
     const params = new URLSearchParams(window.location.search);
     if (params.get("mentor_thanks") === "1") {
-      setSubmitted(true);
-      setA((prev) => ({ ...prev, role: "mentor" }));
+      finishMentorFlow();
     }
   }, []);
+
+  // Best-effort: Google may postMessage on submit; iframe load after first paint is unreliable cross-origin.
+  useEffect(() => {
+    if (!showMentorForm) return;
+
+    function onMessage(event: MessageEvent) {
+      if (event.origin !== "https://docs.google.com") return;
+      const data = event.data;
+      if (
+        data === "submission" ||
+        (typeof data === "string" &&
+          (data.includes("formResponse") || data.includes("submitted")))
+      ) {
+        finishMentorFlow();
+      }
+    }
+
+    window.addEventListener("message", onMessage);
+    return () => window.removeEventListener("message", onMessage);
+  }, [showMentorForm]);
 
   return (
     <>
@@ -211,7 +212,53 @@ export default function SignupPage() {
             </aside>
 
             <div className="col-span-12 md:col-span-8">
-              {showMenteeInfo ? (
+              {showMentorForm ? (
+                <div className="rise">
+                  <div className="eyebrow mb-6">Become a mentor</div>
+                  <p className="max-w-[52ch] text-[1.05rem] leading-[1.65] text-ink-2 mb-8">
+                    Complete the application below. When you&apos;re finished, press Continue
+                    for your confirmation.
+                  </p>
+                  <div className="rounded-2xl border border-rule/80 overflow-hidden bg-paper shadow-sm">
+                    <iframe
+                      src={MENTOR_FORM_EMBED_URL}
+                      title="Mentor application"
+                      className="w-full min-h-[70vh] md:min-h-[820px] border-0"
+                    />
+                  </div>
+                  <div className="mt-10 flex flex-wrap items-center gap-4">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setShowMentorForm(false);
+                        setA({ ...blank, role: "" });
+                      }}
+                      className="link-quiet text-[0.95rem] text-muted"
+                    >
+                      ← Back
+                    </button>
+                    <button
+                      type="button"
+                      onClick={finishMentorFlow}
+                      className="group inline-flex items-center gap-3 rounded-full bg-ink text-paper pl-5 pr-4 py-3 text-[0.95rem] tracking-tight transition-all hover:bg-accent"
+                    >
+                      Continue
+                      <span className="grid place-items-center w-7 h-7 rounded-full bg-paper/15 transition-transform duration-500 group-hover:translate-x-1">
+                        <svg width="11" height="11" viewBox="0 0 11 11">
+                          <path
+                            d="M2 5.5h6.5M5.5 2.5l3 3-3 3"
+                            stroke="currentColor"
+                            strokeWidth="1.2"
+                            fill="none"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              ) : showMenteeInfo ? (
                 <div className="rise">
                   <div className="eyebrow mb-6">Find a mentor</div>
                   <p className="max-w-[52ch] text-[1.05rem] leading-[1.7] text-ink-2">
@@ -361,7 +408,7 @@ export default function SignupPage() {
                           // If we're on the role question and the user picked
                           // mentor, open the external form immediately.
                           if (step === 0 && a.role === "mentor") {
-                            handleSubmit();
+                            setShowMentorForm(true);
                           } else if (step === 0 && a.role === "mentee") {
                             setShowMenteeInfo(true);
                           } else {
@@ -398,31 +445,6 @@ export default function SignupPage() {
                       </button>
                     )}
                   </div>
-
-                    {popupBlocked && a.role === "mentor" && (
-                      <div className="mt-4 max-w-lg text-sm text-ink-2">
-                        <p>
-                          It looks like your browser blocked a pop-up. You can open the mentor form manually: <a href={mentorFormUrl} target="_blank" rel="noopener noreferrer" className="link-quiet">Open mentor form</a>.
-                        </p>
-                        <div className="mt-3 flex items-center gap-3">
-                          <button
-                            onClick={() => setSubmitted(true)}
-                            className="inline-flex items-center gap-2 rounded-full bg-ink text-paper pl-4 pr-4 py-2 text-[0.9rem] hover:bg-accent"
-                          >
-                            I've submitted
-                          </button>
-                          <button
-                            onClick={() => {
-                              mentorFormOpening.current = false;
-                              openMentorForm();
-                            }}
-                            className="link-quiet"
-                          >
-                            Try opening again
-                          </button>
-                        </div>
-                      </div>
-                    )}
 
                   <p className="mt-8 text-[0.82rem] text-muted max-w-[48ch]">
                     Press <kbd className="px-1.5 py-0.5 border border-rule rounded text-[0.7rem] font-mono">Enter</kbd>{" "}
