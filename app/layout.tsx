@@ -26,6 +26,9 @@ export const metadata: Metadata = {
   title: "MentorSEAS — UCLA Engineering Mentorship",
   description:
     "Mentorship for the next generation of Bruins. Built by UCLA engineering students who remember what it felt like.",
+    verification: {
+    google: "GcZdsWt6iM5UTee72uNDC0fLzglPRg5F4vYGR3YMxDk",
+  }
 };
 
 export default function RootLayout({
