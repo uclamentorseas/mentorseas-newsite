@@ -47,10 +47,10 @@ export function Hero() {
             </div>
 
             {/* Welcome headline */}
-            <h1 className="rise rise-2 tech font-bold text-[14vw] sm:text-[10vw] lg:text-[clamp(4rem,8.5vw,8.5rem)] leading-[0.92] tracking-[-0.035em] text-paper">
+            <h1 className="rise rise-2 tech font-bold text-[9.2vw] sm:text-[10vw] lg:text-[clamp(4rem,8.5vw,8.5rem)] leading-[0.92] tracking-[-0.035em] text-paper">
               Welcome to
               <br />
-              <span className="inline-flex items-baseline gap-3 md:gap-5">
+              <span className="inline-flex items-baseline gap-2 md:gap-5">
                 <span className="text-accent">UCLA</span>
                 <span>Engineering</span>
                 <span className="text-accent -ml-1">!</span>
