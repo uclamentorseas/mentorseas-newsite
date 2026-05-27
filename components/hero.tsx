@@ -1,10 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const SUBTEXT = "Engineering is easier when someone's been there before.";
+
+const ROYCE_BLUR =
+  "data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wAARCAALABADASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAwAE/8QAIBAAAgICAgIDAAAAAAAAAAAAAQIDEQAEEyEFEkGR8P/EABUBAQEAAAAAAAAAAAAAAAAAAAEC/8QAGREAAgMBAAAAAAAAAAAAAAAAAAISEzEU/9oADAMBAAIRAxEAPwBV2NeWFpYfeRVNGlN3kksXHyyWgsimFfOadLS15Y2EiFg3ZBY9n8MLf8bqBCgiIVewA7UD949D6TWkcP/Z";
 
 export function Hero() {
   return (
@@ -17,6 +19,9 @@ export function Hero() {
           fill
           priority
           sizes="100vw"
+          quality={70}
+          placeholder="blur"
+          blurDataURL={ROYCE_BLUR}
           className="object-cover"
         />
         {/* Layered overlays for legibility */}
@@ -34,60 +39,33 @@ export function Hero() {
       </div>
 
       {/* Main hero content */}
-      <div className="wrap flex-1 flex items-center pt-16 md:pt-20 pb-16 md:pb-24">
-        <div className="grid grid-cols-12 gap-x-6 gap-y-10 md:gap-x-8 w-full">
-          <div className="col-span-12 lg:col-span-9 relative">
-            {/* Schematic label */}
-            <div className="rise rise-2 flex items-center gap-3 mb-6 md:mb-8">
-              <span className="h-px w-10 bg-accent-soft" />
-              <span className="tech-mono text-[0.7rem] tracking-[0.3em] uppercase text-accent-soft">
-                MentorSEAS / 001
-              </span>
-              <span className="h-px flex-1 max-w-30 bg-accent-soft" />
-            </div>
+      <div className="wrap flex-1 flex items-center justify-center pt-16 md:pt-20 pb-16 md:pb-24">
+        <div className="w-full flex flex-col items-center text-center">
+          {/* Schematic label */}
+          <div className="rise rise-2 flex items-center justify-center gap-3 mb-6 md:mb-8 w-full max-w-md">
+            <span className="h-px flex-1 bg-accent-soft" />
+            <span className="tech-mono text-[0.7rem] tracking-[0.3em] uppercase text-accent-soft">
+              MentorSEAS / 001
+            </span>
+            <span className="h-px flex-1 bg-accent-soft" />
+          </div>
 
-            {/* Welcome headline */}
-            <h1 className="rise rise-2 tech font-bold text-[9.2vw] sm:text-[10vw] lg:text-[clamp(4rem,8.5vw,8.5rem)] leading-[0.92] tracking-[-0.035em] text-paper">
-              Welcome to
-              <br />
-              <span className="inline-flex items-baseline gap-2 md:gap-5">
-                <span className="text-accent">UCLA</span>
-                <span>Engineering</span>
-                <span className="text-accent -ml-1">!</span>
-              </span>
-            </h1>
+          {/* Welcome headline */}
+          <h1 className="rise rise-2 tech font-bold text-[9.2vw] sm:text-[10vw] lg:text-[clamp(4rem,8.5vw,8.5rem)] leading-[0.92] tracking-[-0.035em] text-paper">
+            Welcome to
+            <br />
+            <span className="inline-flex items-baseline gap-2 md:gap-5">
+              <span className="text-accent">UCLA</span>
+              <span>Engineering</span>
+              <span className="text-accent -ml-1">!</span>
+            </span>
+          </h1>
 
-            {/* Typing subtext */}
-            <div className="rise rise-3 mt-8 md:mt-10 max-w-[48ch]">
-              <p className="tech-mono text-[1.15rem] md:text-[1.4rem] leading-normal text-paper/90">
-                <TypedText text={SUBTEXT} speed={32} startDelay={600} />
-              </p>
-            </div>
-
-            {/* CTA */}
-            <div className="rise rise-4 mt-10 md:mt-14">
-              <Link
-                href="/signup"
-                className="group link-quiet inline-flex items-center gap-3 tech text-[1rem] md:text-[1.05rem] tracking-tight text-paper"
-              >
-                Find your mentor
-                <svg
-                  width="14"
-                  height="14"
-                  viewBox="0 0 14 14"
-                  className="transition-transform duration-500 group-hover:translate-x-1"
-                >
-                  <path
-                    d="M2 7h9M7 3l4 4-4 4"
-                    stroke="currentColor"
-                    strokeWidth="1.4"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </Link>
-            </div>
+          {/* Typing subtext */}
+          <div className="rise rise-3 mt-8 md:mt-10 max-w-[48ch]">
+            <p className="tech-mono text-[1.15rem] md:text-[1.4rem] leading-normal text-paper/90">
+              <TypedText text={SUBTEXT} speed={32} startDelay={600} />
+            </p>
           </div>
         </div>
       </div>
@@ -100,8 +78,6 @@ export function Hero() {
             <a href="#about" className="link-quiet">Who we are</a>
             <span aria-hidden className="text-paper/40">·</span>
             <a href="#journey" className="link-quiet">The process</a>
-            <span aria-hidden className="text-paper/40">·</span>
-            <a href="#community" className="link-quiet">A scrapbook</a>
             <span aria-hidden className="text-paper/40">·</span>
             <a href="#organizations" className="link-quiet">36 organizations</a>
           </div>

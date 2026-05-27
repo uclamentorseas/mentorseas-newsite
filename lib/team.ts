@@ -7,11 +7,11 @@ export type Member = {
   committee: Committee;
   major: string;
   image: string;
-  hometown: string;
+  hometown?: string;
   snippet: string;       // short hover blurb (1–2 sentences)
-  philosophy: string;
+  philosophy?: string;
   wish: string;
-  spot: string;
+  spot?: string;
   funFact: string;
   linkedin: string;
 };
@@ -30,7 +30,7 @@ export const team: Member[] = [
     image: "/julie.jpg",
     hometown: "Santa Rosa, CA",
     snippet:
-      "",
+      "I am one of the Co-Presidents for MentorSEAS! I am also involved with Design Build Fly, Society of Women Engineers, and UCLA Athletics as a Broadcast Operations Assistant (B1G+).",
     philosophy:
       "",
     wish:
@@ -68,13 +68,13 @@ export const team: Member[] = [
     image: "/ivan.jpg",
     hometown: "Singapore",
     snippet:
-      "Maintains our website (this one). Believes good infrastructure is the kindest thing you can build for a community.",
+      "I work on the website (this one) along with my team. I'm also an officer in ACM Dev and a Web Dev for the Quantum Computing Student Association!",
     philosophy:
       "What can be done tomorrow should be done today!",
     wish:
-      "Your GPA will be fine",
+      "Your GPA will be fine! Stop stressing over your exams all the time and explore beyond solely academics",
     spot: "Eclipse Gaming Lounge",
-    funFact: "Always on the hill...",
+    funFact: "I'm an international student from Singapore!",
     linkedin: "https://www.linkedin.com/in/ivan-fang-dev/"
   },
   {
@@ -134,42 +134,6 @@ export const team: Member[] = [
 
   // ── Social & Engagement ──────────────────────────────────────
   {
-    slug: "alyson-jeong",
-    name: "Alyson Jeong",
-    role: "",
-    committee: "Social & Engagement",
-    major: "Civil Engineering",
-    image: "/alyson.jpg",
-    hometown: "",
-    snippet:
-      "I'm on the board of Social & Engagement, which handles all the event and media planning for MentorSEAS! I'm also a part of Daily Bruin, Catalyst STEM Newsletter, and ASCE @ UCLA :')",
-    philosophy:
-      "",
-    wish:
-      "Find time to do what you love! It gets easy to push things to the side once the quarter starts to pick up, so carving out time to do the things that help you decompress will keep you on your feet throughout the school year.",
-    spot: "",
-    funFact: "Jamba followed me on ig…",
-    linkedin: "www.linkedin.com/in/alyson-jeong"
-  },
-  {
-    slug: "kana-park",
-    name: "Kana Park",
-    role: "",
-    committee: "Social & Engagement",
-    major: "Bioengineering",
-    image: "/kana.jpg",
-    hometown: "",
-    snippet:
-      "The Social & Engagement Team manages the MentorSEAS socials and plans events for mentors & mentees to attend. You can also find me in the Biomedical Engineering Society and Society of Women Engineers.",
-    philosophy:
-      "",
-    wish:
-      "GO OUT!! Bus to Ktown and study at a cafe. Explore museums around LA. Hang out with your friends in Westwood. Do everything that you may or may not have romanticized about and actually do them! First year is all about making college home.",
-    spot: "",
-    funFact: "I am on level 13,659 on Royal Match",
-    linkedin: "www.linkedin.com/in/kana-park"
-  },
-  {
     slug: "ronak-chadha",
     name: "Ronak Chadha",
     role: "",
@@ -188,12 +152,48 @@ export const team: Member[] = [
     linkedin: "https://www.linkedin.com/in/ronak-chadha/"
   },
   {
+    slug: "alyson-jeong",
+    name: "Alyson Jeong",
+    role: "",
+    committee: "Social & Engagement",
+    major: "Civil Engineering",
+    image: "/alyson.jpg",
+    hometown: "",
+    snippet:
+      "I'm on the board of Social & Engagement, which handles all the event and media planning for MentorSEAS! I'm also a part of Daily Bruin, Catalyst STEM Newsletter, and ASCE @ UCLA :')",
+    philosophy:
+      "",
+    wish:
+      "Find time to do what you love! It gets easy to push things to the side once the quarter starts to pick up, so carving out time to do the things that help you decompress will keep you on your feet throughout the school year.",
+    spot: "",
+    funFact: "Jamba followed me on ig…",
+    linkedin: "https://www.linkedin.com/in/alyson-jeong"
+  },
+  {
+    slug: "kana-park",
+    name: "Kana Park",
+    role: "",
+    committee: "Social & Engagement",
+    major: "Bioengineering",
+    image: "/kana.jpg",
+    hometown: "",
+    snippet:
+      "The Social & Engagement Team manages the MentorSEAS socials and plans events for mentors & mentees to attend. You can also find me in the Biomedical Engineering Society and Society of Women Engineers.",
+    philosophy:
+      "",
+    wish:
+      "GO OUT!! Bus to Ktown and study at a cafe. Explore museums around LA. Hang out with your friends in Westwood. Do everything that you may or may not have romanticized about and actually do them! First year is all about making college home.",
+    spot: "",
+    funFact: "I am on level 13,659 on Royal Match",
+    linkedin: "https://www.linkedin.com/in/kana-park"
+  },
+  {
     slug: "savinna-mattar",
     name: "Savinna Mattar",
     role: "",
     committee: "Social & Engagement",
     major: "Civil Engineering",
-    image: portrait(2),
+    image: "/savinna.jpeg",
     hometown: "",
     snippet:
       "The Social & Engagement Team plans events that build community and support for the MentorSEAS members. We organize socials and run the social media! I am also a part of UCLA's Timber-Strong Design Build team and Alumni Scholars Club.",
@@ -207,6 +207,24 @@ export const team: Member[] = [
   },
 
     // ── Academic & Growth ────────────────────────────────────────
+  {
+    slug: "lily-sarkissian",
+    name: "Lily Sarkissian",
+    role: "",
+    committee: "Academic & Growth",
+    major: "Bioengineering",
+    image: "/lily.jpg",
+    hometown: "",
+    snippet:
+      "I am apart of the Academic & Growth Team, which helps connect incoming students with engineering clubs across campus and provides advice regarding classing planning. I am also heavily involved in the Biomedical Engineering Society with their community outreach program. ",
+    philosophy:
+      "",
+    wish:
+      "Make an effort to join clubs, not just to build your resume but to meet new people and attend activities! You will not magically develop a friend group or integrate yourself into the college culture if you do not purposefully put yourself out there! Once you do that, you will feel much more at home.",
+    spot: "",
+    funFact: "I once went jet skiing and zip lining for the first time on the same day",
+    linkedin: "https://www.linkedin.com/in/lily-sarkissian-1678a63b1/"
+  },
   {
     slug: "sagarika-manian",
     name: "Sagarika Manian",
@@ -223,7 +241,7 @@ export const team: Member[] = [
       "Live the UCLA Life! Explore Los Angeles, go to the football and basketball games, take a bus to the beach, and make memories with your friends. There is more to UCLA than just academics: take advantage of all of the opportunities here (plus the amazing weather)! ",
     spot: "",
     funFact: "I know how to play more than 5 sports both lefty and righty!",
-    linkedin: "www.linkedin.com/in/sagarika-manian"
+    linkedin: "https://www.linkedin.com/in/sagarika-manian"
   },
   {
     slug: "caroline-chen",
@@ -241,7 +259,7 @@ export const team: Member[] = [
       "I wish I knew more study spots around campus. Fall quarter I ended up studying in my room a lot, but throughout the year I was able to find some nice study spots both on and off campus. I would've loved it if there was a more comprehensive list of study spots made available early in the year!",
     spot: "",
     funFact: "I've had pet chickens for a majority of my life.",
-    linkedin: "www.linkedin.com/in/caroline-chen-9271572b3"
+    linkedin: "https://www.linkedin.com/in/caroline-chen-9271572b3"
   },
   {
     slug: "dishti-wadhwani",
@@ -260,24 +278,6 @@ export const team: Member[] = [
     spot: "",
     funFact: "I've tested 46 different chocolate chip cookie recipes :)",
     linkedin: "https://www.linkedin.com/in/dishti-wadhwani-8a8b33241/"
-  },
-  {
-    slug: "lily-sarkissian",
-    name: "Lily Sarkissian",
-    role: "",
-    committee: "Academic & Growth",
-    major: "Bioengineering",
-    image: "/lily.jpg",
-    hometown: "",
-    snippet:
-      "I am apart of the Academic & Growth Team, which helps connect incoming students with engineering clubs across campus and provides advice regarding classing planning. I am also heavily involved in the Biomedical Engineering Society with their community outreach program. ",
-    philosophy:
-      "",
-    wish:
-      "Make an effort to join clubs, not just to build your resume but to meet new people and attend activities! You will not magically develop a friend group or integrate yourself into the college culture if you do not purposefully put yourself out there! Once you do that, you will feel much more at home.",
-    spot: "",
-    funFact: "I once went jet skiing and zip lining for the first time on the same day",
-    linkedin: "https://www.linkedin.com/in/lily-sarkissian-1678a63b1/"
   },
 ];
 

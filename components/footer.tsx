@@ -34,14 +34,15 @@ export function Footer() {
           <div className="col-span-6 md:col-span-2">
             <div className="eyebrow mb-5">Reach Us</div>
             <ul className="space-y-2.5 text-[0.95rem]">
-              <li><a className="link-quiet" href="mailto:hello@mentorseas.org">hello@mentorseas.org</a></li>
+              <li><a className="link-quiet" href="mailto:mentorseas@ucla.edu">mentorseas@ucla.edu</a></li>
               <li><a className="link-quiet" href="https://www.instagram.com/mentorseas/">Instagram</a></li>
-              <li><a className="link-quiet" href="#">LinkedIn</a></li>
+              {/*<li><a className="link-quiet" href="#">LinkedIn</a></li>
               <li><a className="link-quiet" href="#">Discord</a></li>
+              */}
             </ul>
           </div>
 
-          <div className="col-span-12 md:col-span-3">
+          {/* <div className="col-span-12 md:col-span-3">
             <div className="eyebrow mb-5">Where</div>
             <p className="text-[0.95rem] leading-relaxed text-ink-2">
               Engineering VI<br />
@@ -52,7 +53,7 @@ export function Footer() {
               We meet on Thursdays at Boelter, second floor — by the chalkboard
               that&apos;s never quite been erased.
             </p>
-          </div>
+          </div> */}
         </div>
 
         <div className="rule mt-20" />

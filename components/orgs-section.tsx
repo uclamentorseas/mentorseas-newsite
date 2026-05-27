@@ -7,8 +7,8 @@ export function OrgsSection() {
       <div className="wrap">
         <div className="grid grid-cols-12 gap-x-6 md:gap-x-10 mb-16 md:mb-24">
           <div className="col-span-12 md:col-span-3">
-            <div className="eyebrow mb-4">Chapter Four</div>
-            <div className="serif text-7xl md:text-8xl leading-none tabular text-ink/80">04</div>
+            <div className="eyebrow mb-4">Chapter Three</div>
+            <div className="serif text-7xl md:text-8xl leading-none tabular text-ink/80">03</div>
             <div className="rule mt-6 max-w-[3rem]" />
             <p className="mt-4 eyebrow leading-relaxed">A reading list of<br />engineering orgs</p>
           </div>

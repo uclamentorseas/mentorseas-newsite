@@ -6,33 +6,33 @@ import { useEffect, useRef, useState } from "react";
 const chapters = [
   {
     n: "I",
-    label: "Sign up",
+    label: "Match",
     title: "Two forms, one community.",
     body:
-      "Sign-up lives on a single page. Students fill out one Google Form, mentors fill out another — a few quick questions about who you are and what you're hoping for. That's the whole intake.",
+      "Incoming students fill out one Google Form, mentors fill out another — a few quick questions about who you are and what you're hoping for.",
     note: "Sign-up page — Google Forms, ~5 minutes",
     image: "/ucla2.jpg",
-    caption: "Janss Steps, 11:47 PM",
+    caption: "Janss Steps, 11:47 AM",
   },
   {
     n: "II",
     label: "Meet",
     title: "Engineering Welcome Day.",
     body:
-      "Your first hello happens in person. At the start of the year, every mentee meets their mentor at Engineering Welcome Day — no awkward DMs, no scheduling tag. You walk in a name on a form and walk out with someone who's been there.",
+      "Your first hello happens in person. Every mentee meets their mentor at Engineering Welcome Day. You walk in a name on a form and walk out with someone who's been there.",
     note: "Engineering Welcome Day — early fall",
     image: "/ucla1.jpg",
-    caption: "Royce Hall, 8:02 AM",
+    caption: "Royce Hall, 10:02 AM",
   },
   {
     n: "III",
     label: "Stay in touch",
     title: "An open door, all year.",
     body:
-      "After Welcome Day, your mentor is yours. A midterm panic, a problem set debrief, a question about a research lab, an honest answer about which professors are kind — reach out whenever you need them. They've been there.",
+      "After Welcome Day, your mentor is yours. Questions on classes, research labs, career pathways? Reach out whenever you need them. They've been there.",
     note: "Throughout the year — as often as you need",
     image: "/ucla3.jpg",
-    caption: "Engineering V, October",
+    caption: "Engineering V, 04:20 PM",
   },
 ];
 

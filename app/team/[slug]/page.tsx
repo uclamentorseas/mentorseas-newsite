@@ -63,9 +63,9 @@ export default async function MemberPage(props: PageProps<"/team/[slug]">) {
                 <div className="eyebrow tabular">
                   Fig. {String(idx + 1).padStart(2, "0")}
                 </div>
-                <div className="eyebrow text-muted">
+                {/* <div className="eyebrow text-muted">
                   {m.hometown} → Westwood
-                </div>
+                </div> */}
               </figcaption>
             </div>
 
@@ -80,16 +80,32 @@ export default async function MemberPage(props: PageProps<"/team/[slug]">) {
                   href={m.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-5 inline-flex items-center hover:opacity-70 transition-opacity"
+                  className="mt-6 inline-flex items-center gap-2.5 text-[0.95rem] text-ink hover:opacity-70 transition-opacity"
                   aria-label={`${m.name} LinkedIn`}
                 >
-                  <Image
-                    src="/linkedinLogo.png"
-                    alt="LinkedIn"
-                    width={50}
-                    height={50}
-                    className="object-contain"
-                  />
+                  <span
+                    aria-hidden
+                    className="inline-grid place-items-center w-[20px] h-[20px] rounded-[3px] bg-ink text-paper text-[0.62rem] font-bold leading-none pt-[1px]"
+                  >
+                    in
+                  </span>
+                  <span>LinkedIn</span>
+                  <svg
+                    width="11"
+                    height="11"
+                    viewBox="0 0 10 10"
+                    aria-hidden
+                    className="-translate-y-px"
+                  >
+                    <path
+                      d="M2 8L8 2M4 2H8V6"
+                      stroke="currentColor"
+                      strokeWidth="1.2"
+                      fill="none"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
                 </a>
               )}
               <div className="mt-12">
@@ -118,10 +134,10 @@ export default async function MemberPage(props: PageProps<"/team/[slug]">) {
 
               <div className="mt-14">
                 <Link
-                  href="/signup"
+                  href="/find-a-mentor"
                   className="group inline-flex items-center gap-3 rounded-full bg-ink text-paper pl-5 pr-4 py-3 text-[0.95rem] hover:bg-accent transition-colors"
                 >
-                  Ask to be paired with {m.name.split(" ")[0]}
+                  Find your mentor
                   <span className="grid place-items-center w-7 h-7 rounded-full bg-paper/15">
                     <svg width="11" height="11" viewBox="0 0 11 11">
                       <path

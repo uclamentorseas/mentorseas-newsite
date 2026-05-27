@@ -159,10 +159,10 @@ export default function TeamPage() {
             </div>
             <div className="col-span-12 md:col-span-4 md:col-start-9 mt-8 md:mt-0">
               <a
-                href="/signup"
+                href="/find-a-mentor"
                 className="group inline-flex items-center gap-3 rounded-full bg-ink text-paper pl-5 pr-4 py-3 text-[0.95rem] hover:bg-accent transition-colors"
               >
-                Apply for a mentor
+                Find your mentor
                 <span className="grid place-items-center w-7 h-7 rounded-full bg-paper/15">
                   <svg width="11" height="11" viewBox="0 0 11 11">
                     <path

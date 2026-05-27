@@ -62,7 +62,7 @@ export function Nav() {
             Vol. 04 · ‘26
           </span>
           <Link
-            href="/signup"
+            href="/find-a-mentor"
             className={`group relative inline-flex items-center gap-2 border ${ruleColor} ${
               overDarkHero ? "bg-paper text-ink" : "bg-ink text-paper"
             } px-5 py-2.5 text-[0.95rem] tracking-tight tech transition-colors hover:bg-accent hover:text-paper hover:border-accent`}

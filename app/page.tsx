@@ -3,7 +3,7 @@ import { Footer } from "@/components/footer";
 import { Hero } from "@/components/hero";
 import { AboutSection } from "@/components/about-section";
 import { JourneySection } from "@/components/journey-section";
-import { CommunitySection } from "@/components/community-section";
+// import { CommunitySection } from "@/components/community-section";
 import { OrgsSection } from "@/components/orgs-section";
 import { CtaSection } from "@/components/cta-section";
 
@@ -16,7 +16,7 @@ export default function Home() {
         <div className="blueprint-grid-dark">
           <AboutSection />
           <JourneySection />
-          <CommunitySection />
+          {/* <CommunitySection /> — hidden until we have more photos */}
           <OrgsSection />
           <CtaSection />
         </div>
