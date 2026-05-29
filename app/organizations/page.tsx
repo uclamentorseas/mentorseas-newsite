@@ -50,7 +50,7 @@ export default function OrganizationsPage() {
                 <span className="serif-italic">you start?</span>
               </h1>
               <p className="mt-10 max-w-[60ch] text-[1.05rem] leading-[1.65] text-ink-2">
-                We picked thirty-six engineering organizations our mentors
+                We picked twenty-three engineering organizations our mentors
                 recommend by name. Some are workshops; some are families; some
                 are entire little subcultures. Filter by what you want, or
                 ignore the filters — half the fun is wandering in.

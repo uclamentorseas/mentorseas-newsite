@@ -14,7 +14,7 @@ export function OrgsSection() {
           </div>
           <div className="col-span-12 md:col-span-9 md:col-start-4">
             <h2 className="serif text-[10vw] md:text-[5.6vw] xl:text-[4.6vw] leading-[0.98] tracking-[-0.02em] text-ink max-w-[16ch]">
-              Thirty-six rooms,
+              Twenty-three rooms,
               <br />
               <span className="text-accent">one of them yours.</span>
             </h2>
