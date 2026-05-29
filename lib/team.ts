@@ -45,17 +45,17 @@ export const team: Member[] = [
     role: "Co-President",
     committee: "Presidency",
     major: "",
-    image: portrait(1),
+    image: "/vanessa.JPG",
     hometown: "",
     snippet:
-      "",
+      "I am one of the other co-presidents for this year. I love to read and sail!",
     philosophy:
       "",
     wish:
-      "",
+      "Always stay curious! There is always something or somewhere to experience, especially in LA",
     spot: "",
-    funFact: "",
-    linkedin: ""
+    funFact: "I have a pet crawfish!",
+    linkedin: "https://www.linkedin.com/in/vanessatra"
   },
 
     // ── Tech ─────────────────────────────────────────────────────
