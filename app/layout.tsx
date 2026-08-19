@@ -1,7 +1,14 @@
 import type { Metadata } from "next";
-import { Geist, Fraunces, Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import {
+  Geist,
+  Fraunces,
+  Bricolage_Grotesque,
+  JetBrains_Mono,
+  Caveat,
+} from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import { PawTrail } from "@/components/fun/paw-trail";
 
 const geistSans = Geist({
   variable: "--font-sans",
@@ -10,10 +17,17 @@ const geistSans = Geist({
 
 const jetbrainsMono = JetBrains_Mono({subsets:['latin'],variable:'--font-mono'});
 
-const spaceGrotesk = Space_Grotesk({
+// Display face. Variable, so no weight list — .display asks for 700,
+// .label and .btn for 600.
+const bricolage = Bricolage_Grotesque({
   variable: "--font-tech",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+});
+
+// Margin notes and annotations only — never body or UI text.
+const caveat = Caveat({
+  variable: "--font-hand",
+  subsets: ["latin"],
 });
 
 const fraunces = Fraunces({
@@ -23,7 +37,7 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
-  title: "MentorSEAS — UCLA Engineering Mentorship",
+  title: "mentorSEAS — UCLA Engineering Mentorship",
   description:
     "Mentorship for the next generation of Bruins. Built by UCLA engineering students who remember what it felt like.",
     verification: {
@@ -39,10 +53,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn("antialiased", geistSans.variable, spaceGrotesk.variable, fraunces.variable, jetbrainsMono.variable)}
+      className={cn("antialiased", geistSans.variable, bricolage.variable, fraunces.variable, jetbrainsMono.variable, caveat.variable)}
     >
-      <body className="bg-paper text-ink min-h-dvh selection:bg-accent/25 selection:text-ink">
-        <div className="grain pointer-events-none fixed inset-0 z-60 opacity-[0.045] mix-blend-multiply" />
+      <body className="bg-surface text-blue-deep min-h-dvh selection:bg-blue/20">
+        {/* Sitewide. Self-guards on touch and reduced motion, so it simply
+            renders nothing where a cursor trail makes no sense. */}
+        <PawTrail />
         {children}
       </body>
     </html>

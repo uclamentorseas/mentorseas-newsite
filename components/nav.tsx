@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -24,65 +25,71 @@ export function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const baseText = overDarkHero ? "text-paper" : "text-ink";
-  const mutedText = overDarkHero ? "text-paper/80" : "text-ink-2/85";
-  const subtleText = overDarkHero ? "text-paper/60" : "text-muted/80";
-  const ruleColor = overDarkHero ? "border-paper/35" : "border-ink/85";
+  const baseText = overDarkHero ? "text-white" : "text-blue-deep";
+  const mutedText = overDarkHero ? "text-white/85" : "text-blue-deep/75";
 
   return (
     <header
-      className={`fixed top-0 inset-x-0 z-40 transition-[backdrop-filter,background] duration-500 ${
-        scrolled ? "bg-paper/80 backdrop-blur-md" : "bg-transparent"
+      className={`fixed top-0 inset-x-0 z-40 transition-[backdrop-filter,background,box-shadow] duration-300 ${
+        scrolled
+          ? "bg-surface/90 backdrop-blur-md shadow-[0_1px_0_var(--color-line)]"
+          : "bg-transparent"
       }`}
     >
-      <div className="wrap flex h-18 md:h-22 items-center justify-between">
-        <Link href="/" className={`group flex items-baseline gap-3 ${baseText}`}>
-          <span className="tech text-2xl md:text-[26px] font-bold tracking-tight uppercase">
-            Mentor<span className="text-accent">SEAS</span>
+      <div className="wrap flex h-18 md:h-20 items-center justify-between">
+        <Link href="/" className={`flex items-center gap-2.5 ${baseText}`}>
+          {/* Both marks render and crossfade on the same grid cell: swapping
+              `src` instead would fetch the second file mid-scroll and flash. */}
+          <span className="relative block w-9 h-9 md:w-10 md:h-10 shrink-0">
+            <Image
+              src="/mentorseas-mark-on-dark.png"
+              alt=""
+              fill
+              priority
+              sizes="40px"
+              className={`object-contain transition-opacity duration-300 ${
+                overDarkHero ? "opacity-100" : "opacity-0"
+              }`}
+            />
+            <Image
+              src="/mentorseas-mark-on-light.png"
+              alt=""
+              fill
+              priority
+              sizes="40px"
+              className={`object-contain transition-opacity duration-300 ${
+                overDarkHero ? "opacity-0" : "opacity-100"
+              }`}
+            />
           </span>
-          <span className={`hidden md:inline tech-mono text-[0.72rem] tracking-[0.28em] uppercase ${subtleText}`}>
-            UCLA · Engineering
+          <span className="display text-2xl text-current!">
+            mentor
+            <span className={overDarkHero ? "text-gold" : "text-blue"}>
+              SEAS
+            </span>
           </span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-9 text-[1rem]">
+        <nav className="hidden md:flex items-center gap-8">
           {links.map((l) => (
             <Link
               key={l.href}
               href={l.href}
-              className={`link-quiet tech-mono uppercase tracking-[0.18em] text-[0.92rem] ${mutedText} hover:${baseText}`}
+              className={`link-quiet text-[0.95rem] ${mutedText} hover:${baseText}`}
             >
               {l.label}
             </Link>
           ))}
         </nav>
 
-        <div className="hidden md:flex items-center gap-4">
-          <span className={`tech-mono text-[0.78rem] tracking-[0.24em] uppercase tabular ${subtleText}`}>
-            Vol. 04 · ‘26
-          </span>
+        <div className="hidden md:block">
           <Link
             href="/find-a-mentor"
-            className={`group relative inline-flex items-center gap-2 border ${ruleColor} ${
-              overDarkHero ? "bg-paper text-ink" : "bg-ink text-paper"
-            } px-5 py-2.5 text-[0.95rem] tracking-tight tech transition-colors hover:bg-accent hover:text-paper hover:border-accent`}
+            className={`btn text-[0.92rem] py-2.5 px-5 ${
+              overDarkHero ? "btn-on-dark" : "btn-primary"
+            }`}
           >
-            <span>Find your mentor</span>
-            <svg
-              width="12"
-              height="12"
-              viewBox="0 0 12 12"
-              className="transition-transform duration-500 group-hover:translate-x-0.5"
-            >
-              <path
-                d="M2 6h7m-2.5-3L9 6 6.5 9"
-                stroke="currentColor"
-                strokeWidth="1.4"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            Find your mentor
           </Link>
         </div>
 
@@ -91,31 +98,47 @@ export function Nav() {
           className="md:hidden flex flex-col gap-[5px] p-2 -mr-2"
           aria-label="menu"
         >
-          <span className={`block h-px w-5 ${overDarkHero ? "bg-paper" : "bg-ink"} transition-transform ${open ? "translate-y-[3px] rotate-45" : ""}`} />
-          <span className={`block h-px w-5 ${overDarkHero ? "bg-paper" : "bg-ink"} transition-transform ${open ? "-translate-y-[3px] -rotate-45" : ""}`} />
+          <span
+            className={`block h-0.5 w-5 ${
+              overDarkHero ? "bg-white" : "bg-blue-deep"
+            } transition-transform ${
+              open ? "translate-y-[3px] rotate-45" : ""
+            }`}
+          />
+          <span
+            className={`block h-0.5 w-5 ${
+              overDarkHero ? "bg-white" : "bg-blue-deep"
+            } transition-transform ${
+              open ? "-translate-y-[3px] -rotate-45" : ""
+            }`}
+          />
         </button>
       </div>
 
       {/* Mobile sheet */}
       <div
-        className={`md:hidden overflow-hidden transition-[max-height] duration-500 ease-out ${
+        className={`md:hidden overflow-hidden transition-[max-height] duration-400 ease-out ${
           open ? "max-h-96" : "max-h-0"
         }`}
       >
-        <div className="wrap pb-8 pt-2 flex flex-col gap-1 bg-paper/95 backdrop-blur-md border-b border-rule/60">
+        <div className="wrap pb-7 pt-2 flex flex-col gap-1 bg-surface/95 backdrop-blur-md border-b border-line">
           {links.map((l) => (
             <Link
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className="tech text-3xl font-semibold py-2 text-ink-2 uppercase tracking-tight"
+              className="display text-2xl py-2.5"
             >
               {l.label}
             </Link>
           ))}
-          <div className="tech-mono text-[0.7rem] tracking-[0.24em] uppercase mt-4 text-muted">
-            Vol. 04 · ‘26
-          </div>
+          <Link
+            href="/find-a-mentor"
+            onClick={() => setOpen(false)}
+            className="btn btn-primary mt-4 justify-center"
+          >
+            Find your mentor
+          </Link>
         </div>
       </div>
     </header>

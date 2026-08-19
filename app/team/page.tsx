@@ -1,186 +1,155 @@
+import Link from "next/link";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { MentorCard } from "@/components/mentor-card";
 import { committees, team } from "@/lib/team";
+import { Annotation, CircledPhrase } from "@/components/fun/annotation";
 
 export const metadata = {
-  title: "The Team — MentorSEAS",
+  title: "The Team — mentorSEAS",
   description:
-    "Two co-presidents and three committees — the fourteen students who keep MentorSEAS running.",
+    "Two co-presidents and three committees — the students who keep mentorSEAS running.",
 };
 
 export default function TeamPage() {
   const presidents = team.filter((m) => m.committee === "Presidency");
-  const totalContributors = team.length;
+
+  const facts = [
+    { n: String(team.length), k: "students" },
+    { n: "3", k: "committees" },
+    { n: "0", k: "of us had it figured out" },
+  ];
 
   return (
     <>
       <Nav />
-      <main className="pt-24 md:pt-32">
+      <main className="pt-28 md:pt-32">
         {/* Masthead */}
         <section className="wrap">
-          <div className="border-b border-rule/60 pb-3 flex items-center justify-between rise rise-1">
-            <div className="eyebrow">A masthead</div>
-            <div className="eyebrow tabular hidden sm:block">
-              {totalContributors} contributors · 3 committees
-            </div>
-            <div className="eyebrow">Spring 2026</div>
-          </div>
+          <span className="label">Meet The Team</span>
 
-          <div className="grid grid-cols-12 gap-x-6 md:gap-x-10 mt-16 md:mt-24">
-            <div className="col-span-12 md:col-span-3">
-              <div className="eyebrow mb-4">The Team</div>
-              <p className="serif-italic text-2xl text-ink-2 leading-snug max-w-[18ch]">
-                The people who keep
-                <br />
-                the lights on.
-              </p>
-            </div>
-            <div className="col-span-12 md:col-span-9">
-              <h1 className="serif text-[10vw] md:text-[5.6vw] xl:text-[4.6vw] leading-[0.98] tracking-[-0.022em] max-w-[18ch]">
-                Approachable strangers
-                <br />
-                <span className="serif-italic">who become friends</span> in
-                about two coffees<span className="text-accent">.</span>
-              </h1>
-              <p className="mt-10 max-w-[58ch] text-[1.05rem] leading-[1.65] text-ink-2">
-                MentorSEAS is run by fourteen students — two co-presidents and
-                three committees. We make pairings, run events, build the
-                tools, and answer your DMs at hours we won't admit to.
-                None of us are paid. We'd do this anyway.
-              </p>
-            </div>
-          </div>
-        </section>
+          <h1 className="mt-6 display text-[9vw] md:text-[4vw] xl:text-[3.6rem] leading-[1.12] max-w-[20ch]">
+            <CircledPhrase>Approachable</CircledPhrase> strangers who
+            were once in your shoes.
+          </h1>
 
-        {/* Co-Presidents */}
-        <section className="wrap mt-32 md:mt-44">
-          <div className="grid grid-cols-12 gap-x-6 md:gap-x-10 mb-12 md:mb-16">
-            <div className="col-span-12 md:col-span-3">
-              <div className="eyebrow mb-4">Editors-in-Chief</div>
-              <div className="serif text-7xl md:text-8xl leading-none tabular text-ink/80">
-                00
-              </div>
-              <div className="rule mt-6 max-w-[3rem]" />
-              <p className="mt-4 eyebrow leading-relaxed">
-                Co-presidents,<br />elected each spring
-              </p>
-            </div>
-            <div className="col-span-12 md:col-span-9">
-              <h2 className="serif text-[10vw] md:text-[5.4vw] xl:text-[4.4vw] leading-[0.98] tracking-[-0.022em] text-ink max-w-[16ch]">
-                Two co-presidents,
-                <br />
-                <span className="serif-italic">no hierarchy.</span>
-              </h2>
-              <p className="mt-8 max-w-[52ch] text-[1.05rem] leading-[1.65] text-ink-2">
-                One holds office hours; one sends the late-night reminders.
-                Most weeks, you can&apos;t tell which is which.
-              </p>
-            </div>
-          </div>
+          <div className="rule-gold mt-8" />
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-14 md:gap-x-7 md:gap-y-20">
-            {presidents.map((m, i) => (
-              <div
-                key={m.slug}
-                className={`${i === 0 ? "lg:col-start-2" : ""} ${
-                  i % 2 === 1 ? "md:translate-y-10" : ""
-                }`}
-              >
-                <MentorCard member={m} index={i} />
+          <p className="mt-8 max-w-[52ch] text-[1.08rem] leading-[1.6] text-blue-deep/75">
+            {team.length} students run mentorSEAS — two co-presidents and three
+            committees.
+          </p>
+
+          <div className="mt-14 grid grid-cols-1 sm:grid-cols-3 gap-px bg-line border border-line rounded-xl overflow-hidden">
+            {facts.map((f) => (
+              <div key={f.k} className="bg-surface p-7">
+                <div className="display text-5xl text-blue tabular">{f.n}</div>
+                <div className="mt-2 text-[0.95rem] text-blue-deep/70">
+                  {f.k}
+                </div>
               </div>
             ))}
           </div>
         </section>
 
-        {/* Committees */}
+        {/* Co-Presidents */}
+        <section className="py-24 md:py-32">
+          <div className="wrap">
+            <div className="flex items-center gap-4">
+              <span className="display text-2xl text-blue/40 tabular">01</span>
+              <span className="label">Presidents</span>
+            </div>
+
+            <div className="mt-8 flex flex-wrap items-end justify-between gap-6">
+              <h2 className="display text-[8vw] md:text-[3.4vw] xl:text-[3rem] max-w-[16ch]">
+                Your co-presidents.
+              </h2>
+              <Annotation direction="left" className="hidden md:block mb-2">
+                hover over us!
+              </Annotation>
+            </div>
+
+            <div className="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-12 md:gap-x-7">
+              {presidents.map((m, i) => (
+                <div key={m.slug} className={i === 0 ? "lg:col-start-2" : ""}>
+                  <MentorCard member={m} index={i} />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Committees — alternating bands so the page has a rhythm */}
         {committees.map((c, ci) => {
           const members = team.filter((m) => m.committee === c.key);
           return (
-            <section key={c.key} className="wrap mt-32 md:mt-44">
-              <div className="grid grid-cols-12 gap-x-6 md:gap-x-10 mb-12 md:mb-16">
-                <div className="col-span-12 md:col-span-3">
-                  <div className="eyebrow mb-4">{c.label}</div>
-                  <div className="serif text-7xl md:text-8xl leading-none tabular text-ink/80">
-                    {String(ci + 1).padStart(2, "0")}
-                  </div>
-                  <div className="rule mt-6 max-w-[3rem]" />
-                  <p className="mt-4 eyebrow leading-relaxed">
-                    {members.length} students<br />
-                    <span className="text-muted">{c.key}</span>
-                  </p>
+            <section
+              key={c.key}
+              className={`py-24 md:py-32 ${ci % 2 === 0 ? "band" : ""}`}
+            >
+              <div className="wrap">
+                <div className="flex items-center gap-4">
+                  <span className="display text-2xl text-blue/40 tabular">
+                    {String(ci + 2).padStart(2, "0")}
+                  </span>
+                  <span className="label">{c.key}</span>
                 </div>
-                <div className="col-span-12 md:col-span-9">
-                  <h2 className="serif text-[10vw] md:text-[5.4vw] xl:text-[4.4vw] leading-[0.98] tracking-[-0.022em] text-ink max-w-[20ch]">
-                    {c.key.split(" & ")[0]}{" "}
-                    {c.key.includes(" & ") && (
-                      <>
-                        &amp;{" "}
-                        <span className="serif-italic">
-                          {c.key.split(" & ")[1]}
-                        </span>
-                      </>
-                    )}
-                    {!c.key.includes(" & ") && (
-                      <span className="serif-italic">.</span>
-                    )}
-                  </h2>
-                  <p className="mt-3 serif-italic text-2xl text-ink-2 max-w-[28ch]">
-                    {c.subtitle}
-                  </p>
-                  <p className="mt-6 max-w-[58ch] text-[1.02rem] leading-[1.65] text-ink-2/90">
-                    {c.blurb}
-                  </p>
-                </div>
-              </div>
 
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-14 md:gap-x-7 md:gap-y-20">
-                {members.map((m, i) => (
-                  <div
-                    key={m.slug}
-                    className={i % 2 === 1 ? "md:translate-y-10" : ""}
-                  >
-                    <MentorCard member={m} index={i} />
-                  </div>
-                ))}
+                <h2 className="mt-8 display text-[8vw] md:text-[3.4vw] xl:text-[3rem] max-w-[16ch]">
+                  {c.subtitle}
+                </h2>
+
+                <div className="mt-14 grid grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-12 md:gap-x-7">
+                  {members.map((m, i) => (
+                    <MentorCard key={m.slug} member={m} index={i} />
+                  ))}
+                </div>
               </div>
             </section>
           );
         })}
 
         {/* Closing */}
-        <section className="wrap mt-32 md:mt-44">
-          <div className="grid grid-cols-12 gap-x-6 md:gap-x-10 items-end">
-            <div className="col-span-12 md:col-span-7">
-              <div className="eyebrow mb-6">A note from the team</div>
-              <p className="serif text-3xl md:text-[2.6rem] leading-[1.18] text-ink max-w-[26ch]">
-               Welcome to UCLA Engineering!
-              </p>
-            </div>
-            <div className="col-span-12 md:col-span-4 md:col-start-9 mt-8 md:mt-0">
-              <a
+        <section className="pb-24 md:pb-32">
+          <div className="wrap">
+            <div className="rounded-xl bg-blue-deep text-white p-8 md:p-12 flex flex-col md:flex-row md:items-end md:justify-between gap-8">
+              <div>
+                <span className="label text-gold">A note from the team</span>
+                {/* 22ch puts the natural break at the full stop; the nowrap
+                    span keeps the closing phrase intact once the column gets
+                    narrower than that on mobile. */}
+                <h2 className="mt-4 display text-white text-[2rem] md:text-[2.6rem] max-w-[22ch]">
+                  Welcome to UCLA Engineering.{" "}
+                  <span className="whitespace-nowrap">We've got you.</span>
+                </h2>
+              </div>
+              <Link
                 href="/find-a-mentor"
-                className="group inline-flex items-center gap-3 rounded-full bg-ink text-paper pl-5 pr-4 py-3 text-[0.95rem] hover:bg-accent transition-colors"
+                className="btn bg-gold text-blue-deep hover:bg-gold-deep shrink-0"
               >
                 Find your mentor
-                <span className="grid place-items-center w-7 h-7 rounded-full bg-paper/15">
-                  <svg width="11" height="11" viewBox="0 0 11 11">
-                    <path
-                      d="M2 5.5h6.5M5.5 2.5l3 3-3 3"
-                      stroke="currentColor"
-                      strokeWidth="1.2"
-                      fill="none"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </span>
-              </a>
+                <Arrow />
+              </Link>
             </div>
           </div>
         </section>
       </main>
       <Footer />
     </>
+  );
+}
+
+function Arrow() {
+  return (
+    <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden>
+      <path
+        d="M2 6h7m-2.5-3L9 6 6.5 9"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
   );
 }

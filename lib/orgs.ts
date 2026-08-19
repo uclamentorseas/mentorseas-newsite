@@ -2,7 +2,6 @@ export type Org = {
   name: string;
   blurb: string;
   category: "Build" | "Compete" | "Identity" | "Industry" | "Learn" | "Research";
-  beginnerFriendly?: boolean;
   meets: string;
   founded: string;
   website: string;
@@ -12,9 +11,8 @@ export const orgs: Org[] = [
   {
     name: "BSE",
     blurb:
-      "Bruin Software Engineers - Preparing for a rapidly evolving software industry by teaching AI-era tools, guiding real projects, and building a community of dedicating developers.",
+      "Preparing for a rapidly evolving software industry by teaching AI-era tools and guiding real projects",
     category: "Build",
-    beginnerFriendly: true,
     meets: "Fri · Young Hall 1044",
     founded: "2025",
     website: "https://bseatucla.com/",
@@ -24,7 +22,6 @@ export const orgs: Org[] = [
     blurb:
       "Five teams, one shop. Formula, Baja, supermileage, rocketry, and a quiet electric-vehicle group nobody can shut up about.",
     category: "Build",
-    beginnerFriendly: true,
     meets: "Tues · Engineering IV Shop",
     founded: "1987",
     website: "https://www.bruinracing.org/",
@@ -34,7 +31,6 @@ export const orgs: Org[] = [
     blurb:
       "The umbrella for everything CS. Hack, AI, Cyber, Studio, Teach LA, ICPC — pick the room that already feels like home.",
     category: "Build",
-    beginnerFriendly: true,
     meets: "Wed · Engineering VI 289",
     founded: "1969",
     website: "https://www.uclaacm.com",
@@ -53,7 +49,6 @@ export const orgs: Org[] = [
     blurb:
       "A long, careful network of women in engineering — the kind of place where \"you'll figure it out\" is not the answer to anything.",
     category: "Identity",
-    beginnerFriendly: true,
     meets: "Thurs · Boelter 4760",
     founded: "1971",
     website: "https://ucla.swe.org/",
@@ -63,7 +58,6 @@ export const orgs: Org[] = [
     blurb:
       "National Society of Black Engineers, UCLA chapter. Mentorship, conventions, and a whiteboard that holds the year together.",
     category: "Identity",
-    beginnerFriendly: true,
     meets: "Tues · Engineering VI 105",
     founded: "1976",
     website: "https://nsbebruins.wixsite.com/nsbe",
@@ -73,7 +67,6 @@ export const orgs: Org[] = [
     blurb:
       "Society of Hispanic Professional Engineers — first-gen energy, professional dev, and a Dia de los Muertos potluck that shouldn't be missed.",
     category: "Identity",
-    beginnerFriendly: true,
     meets: "Wed · Boelter 3400",
     founded: "1979",
     website: "https://uclasoles.org/",
@@ -101,7 +94,6 @@ export const orgs: Org[] = [
     blurb:
       "Biomedical Engineering Society - Bringing together bioengineering undergraduates, graduate students, faculty, and alumni with academic, career, and social events.",
     category: "Research",
-    beginnerFriendly: true,
     meets: "Tues · Engineering V 5121",
     founded: "1995",
     website: "https://bmes.seas.ucla.edu",
@@ -120,7 +112,6 @@ export const orgs: Org[] = [
     blurb:
       "American Institute of Chemical Engineers - Connecting chemical engineering students through networking, career, and mentorship events.",
     category: "Learn",
-    beginnerFriendly: true,
     meets: "Tues · Mong Learning Center",
     founded: "1907",
     website: "https://www.aicheatucla.com/",
@@ -130,7 +121,6 @@ export const orgs: Org[] = [
     blurb:
       "American Society of Civil Engineers - Networking and hands-on experience in projects covering all areas of civil engineering.",
     category: "Learn",
-    beginnerFriendly: true,
     meets: "",
     founded: "1907",
     website: "https://www.ascebruins.org/",
@@ -140,7 +130,6 @@ export const orgs: Org[] = [
     blurb:
       "American Society of Mechanical Engineers - Professional development, academic and social opportunities for students interested in mechanical engineering.",
     category: "Learn",
-    beginnerFriendly: true,
     meets: "",
     founded: "1907",
     website: "https://www.asmebruins.com/",
@@ -159,7 +148,6 @@ export const orgs: Org[] = [
     blurb:
       "Building the neurotech community by developing skills, networking, and working on brain-computer interface projects relevant to the industry.",
     category: "Compete",
-    beginnerFriendly: true,
     meets: "Join a Team",
     founded: "1907",
     website: "https://www.cruxucla.com/",
@@ -205,7 +193,6 @@ export const orgs: Org[] = [
     blurb:
       "Pilipinos in Engineering and Science - provides resources, social, academic and networking opportunities for Pilipino engineering and science students at UCLA.",
     category: "Identity",
-    beginnerFriendly: true,
     meets: "Young Hall 4216",
     founded: "1993",
     website: "https://piesucla.wixsite.com/pies",

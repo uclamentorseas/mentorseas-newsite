@@ -1,7 +1,32 @@
 @import "tailwindcss";
 
 @theme {
-  /* Warm editorial palette */
+  /* ---------------------------------------------------------------
+     UCLA palette — the current direction. Blue / gold / white.
+     Gold is NEVER text: #FFD100 on white is ~1.4:1. Rules, dots,
+     underlines and fills behind dark text only.
+     Body copy is blue-deep rather than black so the page reads as
+     one family.
+     --------------------------------------------------------------- */
+  --color-blue: #2774ae;
+  --color-blue-deep: #003b5c;
+  --color-blue-mid: #005587;
+  --color-blue-pale: #daebfe;
+  --color-gold: #ffd100;
+  --color-gold-deep: #ffb81c;
+  --color-surface: #ffffff;
+  --color-surface-2: #f4f7fa;
+  --color-line: #d8e1e8;
+
+  /* ---------------------------------------------------------------
+     Legacy warm editorial palette. Every route now uses the UCLA
+     palette above; the only things still reading these tokens are two
+     files that nothing imports — components/community-section.tsx
+     (parked until we have more photos) and
+     components/ui/hand-writing-text.tsx (unused). Delete this block
+     and the editorial primitives below once those are redesigned or
+     dropped.
+     --------------------------------------------------------------- */
   --color-paper: #f3ede2;
   --color-paper-2: #ece4d4;
   --color-paper-3: #e3d9c5;
@@ -12,13 +37,18 @@
   --color-accent: #2774ae;
   --color-accent-deep: #1d4f76;
   --color-accent-soft: #8ec5e8;
-  --color-gold: #b08930;
+  /* No legacy --color-gold: it collided with the UCLA gold above and,
+     being declared later, silently won. The legacy pages now use the
+     brand gold too. --color-gold-brass is the old value, kept only for
+     the .tape primitive. */
+  --color-gold-brass: #b08930;
   --color-gold-soft: #d4a85a;
 
   --font-sans: var(--font-sans), ui-sans-serif, system-ui;
   --font-serif: var(--font-serif), ui-serif, Georgia, serif;
   --font-mono: var(--font-mono), ui-monospace, monospace;
   --font-tech: var(--font-tech), ui-sans-serif, system-ui;
+  --font-hand: var(--font-hand), ui-rounded, cursive;
 }
 
 :root {
@@ -45,8 +75,8 @@ body {
   font-feature-settings: "ss01", "ss02", "cv11";
   font-size: 16px;
   line-height: 1.55;
-  color: var(--color-ink);
-  background-color: var(--color-paper);
+  color: var(--color-blue-deep);
+  background-color: var(--color-surface);
 }
 
 ::selection {
@@ -60,7 +90,217 @@ body {
   background-size: 220px 220px;
 }
 
-/* ---------- Editorial primitives ---------- */
+/* ---------- UCLA primitives ---------- */
+/* Layered as components so Tailwind utilities (text-white, bg-gold, …)
+   always override these defaults rather than losing on source order. */
+@layer components {
+
+/* Display face for every headline. Bricolage Grotesque.
+   -0.02em rather than the -0.03em a geometric face wants: squeezing a
+   humanist face closes its counters, and that tightness is itself a
+   large part of what reads as stiff. */
+.display {
+  font-family: var(--font-tech);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--color-blue-deep);
+}
+
+/* Small section label. Replaces .eyebrow — larger, less letterspacing,
+   sentence-case rather than a wall of tracked-out uppercase. */
+.label {
+  font-family: var(--font-tech);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-blue);
+}
+
+/* The gold accent bar. The one place gold appears at full strength. */
+.rule-gold {
+  height: 4px;
+  width: 3.5rem;
+  background: var(--color-gold);
+  border-radius: 2px;
+}
+
+.band {
+  background: var(--color-surface-2);
+}
+
+/* Margin notes. Never body text — Caveat is unreadable at length. */
+.handwriting {
+  font-family: var(--font-hand);
+  font-weight: 600;
+}
+
+/* Paw prints dropped behind the cursor. */
+.paw-print {
+  animation: paw-fade 900ms ease-out forwards;
+}
+@keyframes paw-fade {
+  0% {
+    opacity: 0;
+    scale: 0.6;
+  }
+  18% {
+    opacity: 0.85;
+    scale: 1;
+  }
+  100% {
+    opacity: 0;
+    scale: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .paw-print {
+    display: none;
+  }
+}
+
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: 0.75rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-tech);
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: -0.01em;
+  padding: 0.85rem 1.5rem;
+  border-radius: 0.5rem;
+  transition: background-color 200ms ease, color 200ms ease,
+    border-color 200ms ease;
+}
+.btn-primary {
+  background: var(--color-blue);
+  color: #fff;
+}
+.btn-primary:hover {
+  background: var(--color-blue-deep);
+}
+.btn-ghost {
+  border: 1px solid var(--color-line);
+  color: var(--color-blue-deep);
+  background: var(--color-surface);
+}
+.btn-ghost:hover {
+  border-color: var(--color-blue);
+  color: var(--color-blue);
+}
+/* On photography / deep blue grounds. */
+.btn-on-dark {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(4px);
+}
+.btn-on-dark:hover {
+  background: #fff;
+  color: var(--color-blue-deep);
+  border-color: #fff;
+}
+
+}
+
+/* Hover/focus reaction. He scales from his own base, never upward: he is
+   cropped at the line he sits on, so lifting would part his paws from it and
+   put him back to floating. Growing keeps the bottom edge pinned.
+   The idle bob pauses while you are on him, so the two don't fight. */
+.bruin-perk {
+  transform-origin: 50% 100%;
+  transition: transform 240ms cubic-bezier(.34, 1.56, .64, 1);
+}
+.bruin-poke:hover .bruin-perk,
+.bruin-poke:focus-visible .bruin-perk {
+  transform: scale(1.06);
+}
+.bruin-poke:active .bruin-perk {
+  transform: scale(1.01);
+}
+.bruin-poke:hover .bruin-bob,
+.bruin-poke:focus-visible .bruin-bob {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .bruin-perk { transition: none; }
+}
+
+/* Bruin's speech bubble: pops in, with a little tail pointing down at him.
+   It is a sibling of his crop window, never a child — inside it the same
+   overflow:hidden that clips his body would clip the bubble too. */
+.bruin-bubble {
+  animation: bruin-bubble-in 260ms cubic-bezier(.34, 1.56, .64, 1) both;
+  z-index: 1;
+}
+@keyframes bruin-bubble-in {
+  from { opacity: 0; transform: translateY(6px) scale(0.94); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Tail. Two stacked triangles so the 1px card border reads continuously:
+   the back one is the border colour, the front one punches the fill back in. */
+.bruin-bubble-tail,
+.bruin-bubble-tail::after {
+  position: absolute;
+  right: 1.75rem;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+}
+.bruin-bubble-tail {
+  bottom: -9px;
+  border-top: 9px solid var(--color-line);
+}
+.bruin-bubble-tail::after {
+  content: "";
+  bottom: 1.5px;
+  right: -8px;
+  border-top: 9px solid var(--color-surface);
+}
+
+/* A small recoil when he is poked. */
+.bruin-nudge {
+  animation: bruin-nudge 320ms cubic-bezier(.34, 1.56, .64, 1);
+}
+@keyframes bruin-nudge {
+  0%   { transform: translateY(0) scale(1); }
+  40%  { transform: translateY(3px) scale(0.96, 1.04); }
+  100% { transform: translateY(0) scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bruin-bubble,
+  .bruin-nudge { animation: none; }
+}
+
+/* Bruin's idle bob. Sits on its own element so it composes with the reveal
+   transform rather than overwriting it.
+   It dips DOWN, never up: he is cropped at the line he rests on, so lifting
+   would part his paws from it and put him back to floating. Sinking just
+   hides a little more of him behind the edge, which reads as peeking.
+   No rotation for the same reason — tilting opens a wedge under one paw. 
+   bruin-bob 4.2s ease-in-out infinite
+*/
+.bruin-bob {
+  animation: none;
+}
+@keyframes bruin-bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(5px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bruin-bob { animation: none; }
+}
+
+/* ---------- Editorial primitives (legacy — see note above) ---------- */
 
 .eyebrow {
   font-family: var(--font-mono);

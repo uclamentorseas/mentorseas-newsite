@@ -16,7 +16,7 @@ export type Member = {
   linkedin: string;
 };
 
-const portraits = ["/ucla1.jpg", "/ucla2.jpg", "/ucla3.jpg", "ivan.jpg", "/ucla-aerial.jpg"];
+const portraits = ["/ucla1.jpg", "/ucla2.jpg", "/ucla3.jpg", "/ivan.jpg", "/ucla-aerial.jpg"];
 const portrait = (i: number) => portraits[i % portraits.length];
 
 export const team: Member[] = [
@@ -30,7 +30,7 @@ export const team: Member[] = [
     image: "/julie.jpg",
     hometown: "Santa Rosa, CA",
     snippet:
-      "I am one of the Co-Presidents for MentorSEAS! I am also involved with Design Build Fly, Society of Women Engineers, and UCLA Athletics as a Broadcast Operations Assistant (B1G+).",
+      "I am one of the Co-Presidents for mentorSEAS! I am also involved with Design Build Fly, Society of Women Engineers, and UCLA Athletics as a Broadcast Operations Assistant (B1G+).",
     philosophy:
       "",
     wish:
@@ -101,7 +101,7 @@ export const team: Member[] = [
     role: "Tech Developer",
     committee: "Tech",
     major: "Computer Science",
-    image: "/rohan.jpg",
+    image: "/rohan.JPG",
     hometown: "San Jose, CA",
     snippet:
       "I'll be working on making this website work for you!",
@@ -160,7 +160,7 @@ export const team: Member[] = [
     image: "/alyson.jpg",
     hometown: "",
     snippet:
-      "I'm on the board of Social & Engagement, which handles all the event and media planning for MentorSEAS! I'm also a part of Daily Bruin, Catalyst STEM Newsletter, and ASCE @ UCLA :')",
+      "I'm on the board of Social & Engagement, which handles all the event and media planning for mentorSEAS! I'm also a part of Daily Bruin, Catalyst STEM Newsletter, and ASCE @ UCLA :')",
     philosophy:
       "",
     wish:
@@ -178,7 +178,7 @@ export const team: Member[] = [
     image: "/kana.jpg",
     hometown: "",
     snippet:
-      "The Social & Engagement Team manages the MentorSEAS socials and plans events for mentors & mentees to attend. You can also find me in the Biomedical Engineering Society and Society of Women Engineers.",
+      "The Social & Engagement Team manages the mentorSEAS socials and plans events for mentors & mentees to attend. You can also find me in the Biomedical Engineering Society and Society of Women Engineers.",
     philosophy:
       "",
     wish:
@@ -196,7 +196,7 @@ export const team: Member[] = [
     image: "/savinna.jpeg",
     hometown: "",
     snippet:
-      "The Social & Engagement Team plans events that build community and support for the MentorSEAS members. We organize socials and run the social media! I am also a part of UCLA's Timber-Strong Design Build team and Alumni Scholars Club.",
+      "The Social & Engagement Team plans events that build community and support for the mentorSEAS members. We organize socials and run the social media! I am also a part of UCLA's Timber-Strong Design Build team and Alumni Scholars Club.",
     philosophy:
       "",
     wish:
@@ -267,7 +267,7 @@ export const team: Member[] = [
     role: "",
     committee: "Academic & Growth",
     major: "Chemical Engineering",
-    image: portrait(1),
+    image: "/dishti.jpg",
     hometown: "",
     snippet:
       "I am part of the Academic & Growth Team! I am also involved with AIChE and UCLA's Indian classical dance team, Taara. ",
@@ -281,28 +281,22 @@ export const team: Member[] = [
   },
 ];
 
-export const committees: { key: Committee; label: string; blurb: string; subtitle: string }[] = [
+export const committees: { key: Committee; label: string; subtitle: string }[] = [
 
   {
     key: "Tech",
     label: "Committee I",
-    blurb:
-      "The website, the pairings tool, the data we keep on whether this is actually working. Built by mentors, for mentors.",
-    subtitle: "How we keep it running.",
+    subtitle: "Busy touching grass.",
   },
   {
     key: "Social & Engagement",
     label: "Committee II",
-    blurb:
-      "Potlucks, intramurals, study groups, the group chat. Everything that turns a pairing into a friendship and a friendship into a life.",
-    subtitle: "How we become friends.",
+    subtitle: "Making friends.",
   },
   {
     key: "Academic & Growth",
     label: "Committee III",
-    blurb:
-      "Tutoring, study workshops, research-pathway pairings, and the quiet handing-down of how each professor actually grades.",
-    subtitle: "How we get better, slowly.",
+    subtitle: "Researching all day.",
   },
 ];
 

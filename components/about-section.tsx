@@ -1,42 +1,49 @@
+import { orgs } from "@/lib/orgs";
+import { team } from "@/lib/team";
+import { CircledPhrase } from "@/components/fun/annotation";
+
 export function AboutSection() {
+  const facts = [
+    { n: String(team.length), k: "students run it" },
+    { n: String(orgs.length), k: "engineering orgs listed" },
+    { n: "1", k: "mentor, yours for the year" },
+  ];
+
   return (
-    <section id="about" className="relative pt-24 md:pt-40">
+    <section id="about" className="py-24 md:py-32">
       <div className="wrap">
-        <div className="grid grid-cols-12 gap-x-6 gap-y-10 md:gap-x-10">
-          <div className="col-span-12 md:col-span-3">
-            <div className="md:sticky md:top-28">
-              <div className="eyebrow mb-4">Chapter One</div>
-              <div className="serif text-7xl md:text-8xl leading-none tabular text-ink/80">
-                01
-              </div>
-              <div className="rule mt-6 max-w-[3rem]" />
-              <p className="mt-4 eyebrow leading-relaxed">
-                What we<br />actually are
-              </p>
-            </div>
+        <div className="flex items-center gap-4">
+          <span className="display text-2xl text-blue/40 tabular">01</span>
+          <span className="label">What we do</span>
+        </div>
+
+        <div className="mt-8 grid grid-cols-12 gap-x-0 md:gap-x-10 gap-y-8">
+          <h2 className="col-span-12 md:col-span-7 display text-[8vw] md:text-[3.4vw] xl:text-[3rem]">
+            <CircledPhrase>Every</CircledPhrase>{" "}
+            incoming engineer
+            <br />
+            gets an upperclassman.
+          </h2>
+
+          {/* The column is a div, not a p: two paragraphs cannot nest. */}
+          <div className="col-span-12 md:col-span-5 md:pt-2">
+            <p className="text-[1.08rem] leading-[1.6] text-blue-deep/75">
+              mentorSEAS pairs first-years with students in their major who
+              remember what the first quarter felt like.
+            </p>
+            <p className="mt-4 text-[1.08rem] leading-[1.6] text-blue-deep/60">
+              By the students, for the students
+            </p>
           </div>
+        </div>
 
-          <div className="col-span-12 md:col-span-9 md:col-start-4">
-            <h2 className="serif text-[10vw] md:text-[5.6vw] xl:text-[4.6vw] leading-[0.98] tracking-[-0.02em] text-ink max-w-[14ch]">
-              Mentorship that doesn&apos;t feel{" "}
-              <span className="text-accent">institutional.</span>
-            </h2>
-
-            <div className="mt-12 grid grid-cols-12 gap-x-6 gap-y-8 md:gap-x-10">
-              <p className="dropcap col-span-12 md:col-span-7 text-[1.05rem] md:text-[1.12rem] leading-[1.65] text-ink-2">
-                The hardest part of UCLA Engineering isn&apos;t the math, or even
-                the late nights — it&apos;s the moment, somewhere in your first
-                quarter, when you&apos;re sitting in a lecture hall of three
-                hundred people and quietly wondering if everyone else got a
-                manual you didn&apos;t. We started MentorSEAS because we
-                remember that feeling. And because the answer to it, almost
-                always, was a junior or senior who took fifteen minutes to
-                explain something a professor had ten seconds for.
-              </p>
-
-             
+        <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-px bg-line border border-line rounded-xl overflow-hidden">
+          {facts.map((f) => (
+            <div key={f.k} className="bg-surface p-7">
+              <div className="display text-5xl text-blue tabular">{f.n}</div>
+              <div className="mt-2 text-[0.95rem] text-blue-deep/70">{f.k}</div>
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

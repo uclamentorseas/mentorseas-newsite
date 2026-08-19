@@ -2,44 +2,67 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { useReducedMotion } from "@/lib/use-pointer";
 
-const chapters = [
+const steps = [
   {
-    n: "I",
+    n: "1",
     label: "Match",
-    title: "Two forms, one community.",
-    body:
-      "Incoming students fill out one Google Form, mentors fill out another — a few quick questions about who you are and what you're hoping for.",
-    note: "Sign-up page — Google Forms, ~5 minutes",
+    title: "Fill out one form.",
+    body: "Five minutes. A few questions about your major and what you want out of it.",
     image: "/ucla2.jpg",
-    caption: "Janss Steps, 11:47 AM",
   },
   {
-    n: "II",
+    n: "2",
     label: "Meet",
     title: "Engineering Welcome Day.",
-    body:
-      "Your first hello happens in person. Every mentee meets their mentor at Engineering Welcome Day. You walk in a name on a form and walk out with someone who's been there.",
-    note: "Engineering Welcome Day — early fall",
+    body: "You meet your mentor in person, early fall. First hello, done.",
     image: "/ucla1.jpg",
-    caption: "Royce Hall, 10:02 AM",
   },
   {
-    n: "III",
+    n: "3",
     label: "Stay in touch",
-    title: "An open door, all year.",
-    body:
-      "After Welcome Day, your mentor is yours. Questions on classes, research labs, career pathways? Reach out whenever you need them. They've been there.",
-    note: "Throughout the year — as often as you need",
+    title: "All year, as needed.",
+    body: "Classes, labs, internships — reach out whenever. They've been there.",
     image: "/ucla3.jpg",
-    caption: "Engineering V, 04:20 PM",
   },
 ];
 
 export function JourneySection() {
-  // Continuous scroll-linked progress through the chapter list (0 → chapters.length - 1).
-  // The image stack crossfades smoothly based on this value, so what you see on the
-  // left tracks where you actually are on the right.
+  const reduced = useReducedMotion();
+
+  return (
+    <section id="journey" className="band py-24 md:py-32">
+      <div className="wrap">
+        <div className="flex items-center gap-4">
+          <span className="display text-2xl text-blue/40 tabular">02</span>
+          <span className="label">How it works</span>
+        </div>
+
+        <h2 className="mt-8 display text-[8vw] md:text-[3.4vw] xl:text-[3rem] max-w-[16ch]">
+          Three steps, one quarter.
+        </h2>
+
+        {/* Desktop gets the scroll-linked rail; everything else gets the
+            plain grid, which is also the reduced-motion version. */}
+        <div className="hidden md:block">
+          {reduced ? <StepGrid /> : <ScrollRail />}
+        </div>
+        <div className="md:hidden">
+          <StepGrid />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/**
+ * Sticky image on the left, steps on the right. A pivot line 42% down the
+ * viewport decides which step you're "on"; progress interpolates
+ * continuously between step indices so the image crossfade and the parallax
+ * nudge track your actual scroll rather than snapping at thresholds.
+ */
+function ScrollRail() {
   const [progress, setProgress] = useState(0);
   const refs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -47,19 +70,13 @@ export function JourneySection() {
     let raf = 0;
 
     const update = () => {
-      // Pivot line: the y-coordinate in the viewport that decides "where am I".
-      // 42% from the top sits roughly at the center of the sticky image.
       const pivot = window.innerHeight * 0.42;
-
-      // Compute each chapter's center y relative to the viewport.
       const centers = refs.current.map((el) => {
         if (!el) return null;
         const r = el.getBoundingClientRect();
         return r.top + r.height / 2;
       });
 
-      // Walk the centers and find which two chapters bracket the pivot,
-      // then interpolate continuously between their indices.
       let next = 0;
       const first = centers[0];
       const last = centers[centers.length - 1];
@@ -103,127 +120,111 @@ export function JourneySection() {
   const active = Math.round(progress);
 
   return (
-    <section id="journey" className="relative pt-32 md:pt-48 pb-32 md:pb-56">
-      <div className="wrap">
-        <div className="grid grid-cols-12 gap-x-6 md:gap-x-10">
-          <div className="col-span-12 md:col-span-3">
-            <div className="md:sticky md:top-28">
-              <div className="eyebrow mb-4">Chapter Two</div>
-              <div className="serif text-7xl md:text-8xl leading-none tabular text-ink/80">
-                02
-              </div>
-              <div className="rule mt-6 max-w-[3rem]" />
-              <p className="mt-4 eyebrow leading-relaxed">
-                The mentorship<br />experience
-              </p>
-            </div>
-          </div>
-
-          <div className="col-span-12 md:col-span-9 md:col-start-4">
-            <h2 className="serif text-[10vw] md:text-[5.6vw] xl:text-[4.6vw] leading-[0.98] tracking-[-0.02em] text-ink max-w-[16ch]">
-              A three-step path,
-              <br />
-              <span className="text-accent">told plainly.</span>
-            </h2>
-          </div>
-        </div>
-
-        <div className="mt-16 md:mt-28 grid grid-cols-12 gap-x-6 md:gap-x-10">
-          {/* Left: image rail */}
-          <div className="hidden md:block md:col-span-5 md:col-start-1">
-            <div
-              className="sticky top-28 will-change-transform"
-              style={{
-                transform: `translate3d(0, ${progress * 80}px, 0)`,
-              }}
-            >
-              <div className="relative photo aspect-[4/5]">
-                {chapters.map((c, i) => (
-                  <Image
-                    key={c.image}
-                    src={c.image}
-                    alt={c.caption}
-                    fill
-                    sizes="(min-width:768px) 40vw, 100vw"
-                    className={`object-cover transition-opacity duration-700 ${
-                      i === active ? "opacity-100" : "opacity-0"
-                    }`}
-                  />
-                ))}
-                <div className="absolute inset-0 ring-1 ring-inset ring-ink/[0.04] pointer-events-none" />
-                <div className="absolute bottom-0 inset-x-0 p-5 flex items-end justify-between text-paper">
-                  <div className="eyebrow text-paper/80 backdrop-blur-[2px]">
-                    Fig. 0{active + 2}
-                  </div>
-                  <div className="text-[0.78rem] text-paper/90 max-w-[18ch] text-right">
-                    {chapters[active].caption}
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-6 flex items-center justify-between">
-                <div className="flex gap-1">
-                  {chapters.map((c, i) => (
-                    <span
-                      key={c.n}
-                      className={`h-px transition-all duration-500 ${
-                        i === active ? "bg-ink w-12" : "bg-rule/80 w-6"
-                      }`}
-                    />
-                  ))}
-                </div>
-                <div className="eyebrow tabular">
-                  {String(active + 1).padStart(2, "0")} /{" "}
-                  {String(chapters.length).padStart(2, "0")}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Right: chapters */}
-          <div className="col-span-12 md:col-span-7 md:col-start-6 space-y-24 md:space-y-40">
-            {chapters.map((c, i) => (
-              <div
-                key={c.n}
-                ref={(el) => {
-                  refs.current[i] = el;
-                }}
-                className={`relative pb-2 transition-opacity duration-700 ${
-                  i === active ? "opacity-100" : "md:opacity-40"
+    <div className="mt-14 grid grid-cols-12 gap-x-10">
+      {/* Image rail */}
+      <div className="col-span-5">
+        <div
+          className="sticky top-28 will-change-transform"
+          style={{ transform: `translate3d(0, ${progress * 56}px, 0)` }}
+        >
+          <div className="relative aspect-[4/5] rounded-xl overflow-hidden border border-line bg-blue-pale">
+            {steps.map((s, i) => (
+              <Image
+                key={s.image}
+                src={s.image}
+                alt=""
+                fill
+                sizes="40vw"
+                className={`object-cover transition-opacity duration-700 ${
+                  i === active ? "opacity-100" : "opacity-0"
                 }`}
-              >
-                <div className="flex items-baseline gap-5 mb-6">
-                  <span className="serif text-3xl md:text-4xl text-ink/85 tracking-tight">
-                    {c.n}.
-                  </span>
-                  <span className="eyebrow">{c.label}</span>
-                </div>
-                <h3 className="serif text-4xl md:text-[3.2rem] leading-[1.02] tracking-tight text-ink max-w-[14ch]">
-                  {c.title}
-                </h3>
-                <p className="mt-6 max-w-[44ch] text-[1.05rem] leading-[1.65] text-ink-2">
-                  {c.body}
-                </p>
-                <p className="mt-6 eyebrow text-muted">{c.note}</p>
-                {i === chapters.length - 1 && (
-                  <div className="hidden md:block h-40" aria-hidden />
-                )}
-
-                {/* Mobile inline image */}
-                <div className="md:hidden mt-8 relative photo aspect-[4/3]">
-                  <Image
-                    src={c.image}
-                    alt={c.caption}
-                    fill
-                    sizes="100vw"
-                    className="object-cover"
-                  />
-                </div>
-              </div>
+              />
             ))}
+          </div>
+
+          <div className="mt-5 flex items-center justify-between">
+            <div className="flex gap-1.5">
+              {steps.map((s, i) => (
+                <span
+                  key={s.n}
+                  className={`h-1 rounded-full transition-all duration-500 ${
+                    i === active ? "bg-blue w-10" : "bg-line w-5"
+                  }`}
+                />
+              ))}
+            </div>
+            <span className="label tabular">
+              {String(active + 1).padStart(2, "0")} /{" "}
+              {String(steps.length).padStart(2, "0")}
+            </span>
           </div>
         </div>
       </div>
-    </section>
+
+      {/* Steps */}
+      <div className="col-span-7 space-y-32 lg:space-y-44 pt-4">
+        {steps.map((s, i) => (
+          <div
+            key={s.n}
+            ref={(el) => {
+              refs.current[i] = el;
+            }}
+            className={`transition-opacity duration-500 ${
+              i === active ? "opacity-100" : "opacity-40"
+            }`}
+          >
+            <div className="flex items-center gap-3">
+              <span className="grid place-items-center w-8 h-8 rounded-full bg-gold text-blue-deep display text-[0.95rem]">
+                {s.n}
+              </span>
+              <span className="label">{s.label}</span>
+            </div>
+            <h3 className="mt-5 display text-[2rem] lg:text-[2.4rem] leading-[1.08] max-w-[16ch]">
+              {s.title}
+            </h3>
+            <p className="mt-3 text-[1.05rem] leading-[1.55] text-blue-deep/70 max-w-[38ch]">
+              {s.body}
+            </p>
+          </div>
+        ))}
+        {/* Tail room so the last step can reach the pivot line */}
+        <div className="h-24" aria-hidden />
+      </div>
+    </div>
+  );
+}
+
+/** Static 3-up. Mobile, and the reduced-motion fallback. */
+function StepGrid() {
+  return (
+    <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-7">
+      {steps.map((s) => (
+        <div key={s.n} className="card overflow-hidden flex flex-col">
+          <div className="relative aspect-[3/2] bg-blue-pale">
+            <Image
+              src={s.image}
+              alt=""
+              fill
+              sizes="(min-width:768px) 33vw, 100vw"
+              className="object-cover"
+            />
+          </div>
+          <div className="p-6 flex-1">
+            <div className="flex items-center gap-3">
+              <span className="grid place-items-center w-7 h-7 rounded-full bg-gold text-blue-deep display text-[0.9rem]">
+                {s.n}
+              </span>
+              <span className="label">{s.label}</span>
+            </div>
+            <h3 className="mt-4 display text-[1.45rem] leading-[1.15]">
+              {s.title}
+            </h3>
+            <p className="mt-2.5 text-[0.98rem] leading-[1.55] text-blue-deep/70">
+              {s.body}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
   );
 }

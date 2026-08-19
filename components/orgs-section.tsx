@@ -1,86 +1,58 @@
 import Link from "next/link";
 import { orgs } from "@/lib/orgs";
 
+const PREVIEW_COUNT = 8;
+
 export function OrgsSection() {
+  const preview = orgs.slice(0, PREVIEW_COUNT);
+
   return (
-    <section id="organizations" className="relative pt-32 md:pt-48">
+    <section id="organizations" className="py-24 md:py-32">
       <div className="wrap">
-        <div className="grid grid-cols-12 gap-x-6 md:gap-x-10 mb-16 md:mb-24">
-          <div className="col-span-12 md:col-span-3">
-            <div className="eyebrow mb-4">Chapter Three</div>
-            <div className="serif text-7xl md:text-8xl leading-none tabular text-ink/80">03</div>
-            <div className="rule mt-6 max-w-[3rem]" />
-            <p className="mt-4 eyebrow leading-relaxed">A reading list of<br />engineering orgs</p>
-          </div>
-          <div className="col-span-12 md:col-span-9 md:col-start-4">
-            <h2 className="serif text-[10vw] md:text-[5.6vw] xl:text-[4.6vw] leading-[0.98] tracking-[-0.02em] text-ink max-w-[16ch]">
-              Twenty-three rooms,
-              <br />
-              <span className="text-accent">one of them yours.</span>
-            </h2>
-            <p className="mt-8 max-w-[52ch] text-[1.05rem] leading-[1.65] text-ink-2">
-              UCLA Engineering has more student organizations than orientation
-              has time for. Here&apos;s a hand-picked, opinionated start —
-              ordered by how warmly they greet a freshman who walks in late.
-            </p>
-          </div>
+        <div className="flex items-center gap-4">
+          <span className="display text-2xl text-blue/40 tabular">03</span>
+          <span className="label">Organizations</span>
         </div>
 
-        {/* Section header */}
-        <div className="grid grid-cols-12 gap-4 pb-3 border-b border-rule/60 mb-2 eyebrow">
-          <div className="col-span-1 hidden md:block">№</div>
-          <div className="col-span-7 md:col-span-4">Organization</div>
-          <div className="hidden md:block md:col-span-2">Category</div>
-          <div className="hidden md:block md:col-span-3">Meets</div>
-          <div className="col-span-5 md:col-span-2 text-right">Est.</div>
+        <div className="mt-8 flex flex-wrap items-end justify-between gap-6">
+          <h2 className="display text-[8vw] md:text-[3.4vw] xl:text-[3rem] max-w-[16ch]">
+            {orgs.length} engineering orgs,
+            <br />
+            one of them yours.
+          </h2>
+          <Link href="/organizations" className="btn btn-ghost">
+            See all {orgs.length}
+            <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden>
+              <path
+                d="M2 6h7m-2.5-3L9 6 6.5 9"
+                stroke="currentColor"
+                strokeWidth="1.6"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </Link>
         </div>
 
-        <ul className="divide-y divide-rule/60">
-          {orgs.map((o, i) => (
+        <ul className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          {preview.map((o) => (
             <li key={o.name}>
               <Link
                 href="/organizations"
-                className="group w-full grid grid-cols-12 gap-4 items-baseline py-6 md:py-7 text-left transition-colors"
+                className="card group block p-5 h-full transition-colors hover:border-blue"
               >
-                <span className="hidden md:block col-span-1 eyebrow tabular text-muted">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <span className="col-span-7 md:col-span-4 serif text-2xl md:text-[2rem] leading-none tracking-tight text-ink-2 transition-colors group-hover:text-accent">
+                <div className="display text-[1.15rem] leading-tight group-hover:text-blue transition-colors">
                   {o.name}
-                  {o.beginnerFriendly && (
-                    <span className="ml-3 align-middle inline-block w-1.5 h-1.5 rounded-full bg-gold" title="Welcomes beginners" />
-                  )}
-                </span>
-                <span className="hidden md:block md:col-span-2 eyebrow text-muted">
+                </div>
+                <div className="mt-2 text-[0.85rem] text-blue-deep/60">
                   {o.category}
-                </span>
-                <span className="hidden md:block md:col-span-3 text-[0.92rem] text-ink-2/85 leading-snug">
-                  {o.meets}
-                </span>
-                <span className="col-span-5 md:col-span-2 text-right serif text-xl tabular text-muted">
-                  {o.founded}
-                </span>
-                <p className="col-span-12 md:col-span-9 md:col-start-2 mt-2 md:mt-3 text-[0.95rem] leading-relaxed text-muted max-w-[60ch]">
-                  {o.blurb}
-                </p>
+                </div>
               </Link>
             </li>
           ))}
         </ul>
 
-        <div className="mt-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          <p className="text-[0.85rem] text-muted">
-            <span className="inline-block w-1.5 h-1.5 rounded-full bg-gold align-middle mr-2" />
-            Welcomes beginners — no prior experience expected.
-          </p>
-          <Link
-            href="/organizations"
-            className="link-quiet inline-flex items-center gap-2 text-[0.95rem]"
-          >
-            See all 36 organizations
-            <span aria-hidden>→</span>
-          </Link>
-        </div>
       </div>
     </section>
   );

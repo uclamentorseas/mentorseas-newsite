@@ -12,9 +12,9 @@ export function generateStaticParams() {
 export async function generateMetadata(props: PageProps<"/team/[slug]">) {
   const { slug } = await props.params;
   const m = findMember(slug);
-  if (!m) return { title: "MentorSEAS" };
+  if (!m) return { title: "mentorSEAS" };
   return {
-    title: `${m.name} — MentorSEAS`,
+    title: `${m.name} — mentorSEAS`,
     description: m.snippet,
   };
 }
@@ -31,24 +31,24 @@ export default async function MemberPage(props: PageProps<"/team/[slug]">) {
   return (
     <>
       <Nav />
-      <main className="pt-24 md:pt-32">
+      <main className="pt-28 md:pt-32">
         <section className="wrap">
-          <div className="border-b border-rule/60 pb-3 flex items-center justify-between text-[0.78rem]">
-            <Link href="/team" className="link-quiet eyebrow">
-              ← All contributors
+          <div className="flex items-center justify-between gap-4 border-b border-line pb-4">
+            <Link
+              href="/team"
+              className="link-quiet label text-blue-deep/70 hover:text-blue"
+            >
+              ← Back to the team
             </Link>
-            <div className="eyebrow tabular">
-              № {String(idx + 1).padStart(2, "0")} /{" "}
-              {String(team.length).padStart(2, "0")}
-            </div>
-            <div className="eyebrow">{m.committee}</div>
+            <span className="label">{m.committee}</span>
           </div>
         </section>
 
-        <section className="wrap mt-16 md:mt-24">
-          <div className="grid grid-cols-12 gap-x-6 gap-y-10 md:gap-x-10 items-start">
+        <section className="wrap mt-14 md:mt-20">
+          <div className="grid grid-cols-12 gap-x-0 md:gap-x-10 gap-y-10 items-start">
+            {/* Portrait */}
             <div className="col-span-12 md:col-span-5">
-              <figure className="relative photo aspect-[4/5] shadow-[0_30px_70px_-30px_rgba(26,24,20,0.4)]">
+              <div className="relative aspect-[4/5] rounded-xl overflow-hidden border border-line bg-blue-pale">
                 <Image
                   src={m.image}
                   alt={`Portrait of ${m.name}`}
@@ -57,99 +57,89 @@ export default async function MemberPage(props: PageProps<"/team/[slug]">) {
                   sizes="(min-width:768px) 40vw, 100vw"
                   className="object-cover"
                 />
-                <div className="tape -top-2 left-10 -rotate-6" />
-              </figure>
-              <figcaption className="mt-4 flex items-baseline justify-between">
-                <div className="eyebrow tabular">
-                  Fig. {String(idx + 1).padStart(2, "0")}
-                </div>
-                {/* <div className="eyebrow text-muted">
-                  {m.hometown} → Westwood
-                </div> */}
-              </figcaption>
-            </div>
+              </div>
 
-            <div className="col-span-12 md:col-span-7">
-              <div className="eyebrow mb-5">{m.role}</div>
-              <h1 className="serif text-[12vw] md:text-[6.4vw] xl:text-[5.2vw] leading-[0.96] tracking-[-0.024em]">
-                {m.name}
-              </h1>
-              <p className="mt-4 serif-italic text-2xl text-ink-2">{m.major}</p>
               {m.linkedin && (
                 <a
                   href={m.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-6 inline-flex items-center gap-2.5 text-[0.95rem] text-ink hover:opacity-70 transition-opacity"
-                  aria-label={`${m.name} LinkedIn`}
+                  className="mt-5 btn btn-ghost w-full justify-center"
+                  aria-label={`${m.name} on LinkedIn`}
                 >
                   <span
                     aria-hidden
-                    className="inline-grid place-items-center w-[20px] h-[20px] rounded-[3px] bg-ink text-paper text-[0.62rem] font-bold leading-none pt-[1px]"
+                    className="inline-grid place-items-center w-[20px] h-[20px] rounded-[3px] bg-blue text-white text-[0.62rem] font-bold leading-none pt-[1px]"
                   >
                     in
                   </span>
-                  <span>LinkedIn</span>
-                  <svg
-                    width="11"
-                    height="11"
-                    viewBox="0 0 10 10"
-                    aria-hidden
-                    className="-translate-y-px"
-                  >
+                  LinkedIn
+                </a>
+              )}
+            </div>
+
+            {/* Details */}
+            <div className="col-span-12 md:col-span-7">
+              <span className="label">{m.role}</span>
+
+              <h1 className="mt-4 display text-[11vw] md:text-[5vw] xl:text-[4rem] leading-[0.98]">
+                {m.name}
+              </h1>
+
+              {m.major && (
+                <p className="mt-4 text-[1.15rem] text-blue-deep/70">
+                  {m.major}
+                </p>
+              )}
+
+              <div className="rule-gold mt-7" />
+
+              {m.snippet && (
+                <p className="mt-7 max-w-[46ch] text-[1.05rem] leading-[1.6] text-blue-deep/75">
+                  {m.snippet}
+                </p>
+              )}
+
+              {/* The quote — the reason anyone lands on this page */}
+              <figure className="mt-10 rounded-xl bg-blue-deep text-white p-7 md:p-9">
+                <figcaption className="label text-gold">
+                  What I wish I knew freshman year
+                </figcaption>
+                <blockquote className="mt-4 display text-white text-[1.5rem] md:text-[1.9rem] leading-[1.2]">
+                  &ldquo;{m.wish}&rdquo;
+                </blockquote>
+              </figure>
+
+              <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="card p-6">
+                  <div className="label">Fun fact</div>
+                  <p className="mt-3 text-[1rem] leading-[1.55] text-blue-deep/80">
+                    {m.funFact}
+                  </p>
+                </div>
+                {m.philosophy && (
+                  <div className="card p-6">
+                    <div className="label">Philosophy</div>
+                    <p className="mt-3 text-[1rem] leading-[1.55] text-blue-deep/80">
+                      {m.philosophy}
+                    </p>
+                  </div>
+                )}
+              </div>
+
+              <div className="mt-10">
+                <Link href="/find-a-mentor" className="btn btn-primary">
+                  Find your mentor
+                  <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden>
                     <path
-                      d="M2 8L8 2M4 2H8V6"
+                      d="M2 6h7m-2.5-3L9 6 6.5 9"
                       stroke="currentColor"
-                      strokeWidth="1.2"
+                      strokeWidth="1.6"
                       fill="none"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     />
                   </svg>
-                </a>
-              )}
-              <div className="mt-12">
-                <div className="eyebrow mb-3">
-                  What I wish I knew freshman year
-                </div>
-                <p className="serif text-[1.6rem] md:text-[2rem] leading-[1.25] text-ink max-w-[28ch]">
-                  &ldquo;{m.wish}&rdquo;
-                </p>
-              </div>
-
-              <div className="mt-14 grid grid-cols-12 gap-y-10 md:gap-x-8">
-                <div className="col-span-12 md:col-span-7">
-                  <div className="eyebrow mb-3">Fun fact</div>
-                  <p className="text-[1.02rem] leading-[1.65] text-ink-2">
-                    {m.funFact}
-                  </p>
-                </div>
-                {/* <div className="col-span-6 md:col-span-5">
-                  <div className="eyebrow mb-2">Favorite spot</div>
-                  <p className="text-[0.95rem] text-ink-2 leading-snug">
-                    {m.spot}
-                  </p>
-                </div> */}
-              </div>
-
-              <div className="mt-14">
-                <Link
-                  href="/find-a-mentor"
-                  className="group inline-flex items-center gap-3 rounded-full bg-ink text-paper pl-5 pr-4 py-3 text-[0.95rem] hover:bg-accent transition-colors"
-                >
-                  Find your mentor
-                  <span className="grid place-items-center w-7 h-7 rounded-full bg-paper/15">
-                    <svg width="11" height="11" viewBox="0 0 11 11">
-                      <path
-                        d="M2 5.5h6.5M5.5 2.5l3 3-3 3"
-                        stroke="currentColor"
-                        strokeWidth="1.2"
-                        fill="none"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </span>
                 </Link>
               </div>
             </div>
@@ -157,28 +147,31 @@ export default async function MemberPage(props: PageProps<"/team/[slug]">) {
         </section>
 
         {/* Prev / next */}
-        <section className="wrap mt-32 md:mt-40">
-          <div className="rule mb-6" />
-          <div className="grid grid-cols-12 gap-x-6 md:gap-x-10 items-baseline">
+        <section className="wrap mt-24 md:mt-32 pb-24 md:pb-32">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <Link
               href={`/team/${prev.slug}`}
-              className="col-span-6 group block"
+              className="card group p-6 transition-colors hover:border-blue"
             >
-              <div className="eyebrow text-muted mb-3">← Previous</div>
-              <div className="serif text-2xl md:text-3xl leading-tight tracking-tight group-hover:text-accent transition-colors">
+              <div className="label">← Previous</div>
+              <div className="mt-3 display text-[1.4rem] leading-tight group-hover:text-blue transition-colors">
                 {prev.name}
               </div>
-              <div className="eyebrow mt-2 text-muted">{prev.role}</div>
+              <div className="mt-1.5 text-[0.9rem] text-blue-deep/60">
+                {prev.role}
+              </div>
             </Link>
             <Link
               href={`/team/${next.slug}`}
-              className="col-span-6 group block text-right"
+              className="card group p-6 transition-colors hover:border-blue sm:text-right"
             >
-              <div className="eyebrow text-muted mb-3">Next →</div>
-              <div className="serif text-2xl md:text-3xl leading-tight tracking-tight group-hover:text-accent transition-colors">
+              <div className="label">Next →</div>
+              <div className="mt-3 display text-[1.4rem] leading-tight group-hover:text-blue transition-colors">
                 {next.name}
               </div>
-              <div className="eyebrow mt-2 text-muted">{next.role}</div>
+              <div className="mt-1.5 text-[0.9rem] text-blue-deep/60">
+                {next.role}
+              </div>
             </Link>
           </div>
         </section>
