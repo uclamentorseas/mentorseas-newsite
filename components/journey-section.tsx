@@ -9,14 +9,14 @@ const steps = [
     n: "1",
     label: "Match",
     title: "Fill out one form.",
-    body: "Five minutes. A few questions about your major and what you want out of it.",
+    body: "Five minutes to register yourself.",
     image: "/ucla2.jpg",
   },
   {
     n: "2",
     label: "Meet",
     title: "Engineering Welcome Day.",
-    body: "You meet your mentor in person, early fall. First hello, done.",
+    body: "Meet your mentor in person, early fall.",
     image: "/ucla1.jpg",
   },
   {

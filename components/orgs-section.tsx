@@ -1,11 +1,7 @@
 import Link from "next/link";
-import { orgs } from "@/lib/orgs";
-
-const PREVIEW_COUNT = 8;
+import { featured, orgs } from "@/lib/orgs";
 
 export function OrgsSection() {
-  const preview = orgs.slice(0, PREVIEW_COUNT);
-
   return (
     <section id="organizations" className="py-24 md:py-32">
       <div className="wrap">
@@ -16,7 +12,7 @@ export function OrgsSection() {
 
         <div className="mt-8 flex flex-wrap items-end justify-between gap-6">
           <h2 className="display text-[8vw] md:text-[3.4vw] xl:text-[3rem] max-w-[16ch]">
-            {orgs.length} engineering orgs,
+            {orgs.length} engineering organizations,
             <br />
             one of them yours.
           </h2>
@@ -36,7 +32,7 @@ export function OrgsSection() {
         </div>
 
         <ul className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-          {preview.map((o) => (
+          {featured.map((o) => (
             <li key={o.name}>
               <Link
                 href="/organizations"
@@ -46,7 +42,7 @@ export function OrgsSection() {
                   {o.name}
                 </div>
                 <div className="mt-2 text-[0.85rem] text-blue-deep/60">
-                  {o.category}
+                  {o.categories[0]}
                 </div>
               </Link>
             </li>

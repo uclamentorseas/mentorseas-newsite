@@ -107,7 +107,11 @@ export function CircledPhrase({ children }: { children: React.ReactNode }) {
         aria-hidden
       >
         <motion.path
-          d="M104 4 C 168 2, 198 14, 196 30 C 194 48, 140 57, 92 56 C 40 55, 4 46, 5 29 C 6 13, 44 4, 100 4"
+          // The tail passes back through the start point (104,4) and keeps
+          // going to x=145, drifting above the opening stroke — a hand-drawn
+          // overshoot rather than a seam. Closing exactly on the start point
+          // instead leaves a visible notch at the join.
+          d="M104 4 C 168 2, 198 14, 196 30 C 194 48, 140 57, 92 56 C 40 55, 4 46, 5 29 C 6 13, 44 6, 145 2"
           stroke="currentColor"
           strokeWidth="3"
           strokeLinecap="round"

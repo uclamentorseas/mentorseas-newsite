@@ -5,7 +5,7 @@ import { CircledPhrase } from "@/components/fun/annotation";
 export function AboutSection() {
   const facts = [
     { n: String(team.length), k: "students run it" },
-    { n: String(orgs.length), k: "engineering orgs listed" },
+    { n: String(orgs.length), k: "engineering organizations listed" },
     { n: "1", k: "mentor, yours for the year" },
   ];
 

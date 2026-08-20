@@ -9,7 +9,7 @@ export function CtaSection() {
           <div className="rounded-xl border border-transparent bg-blue-deep text-white p-8 md:p-10 flex flex-col">
             <span className="label text-gold">Upperclassmen</span>
             <h2 className="mt-4 display text-white text-[2rem] md:text-[1.75rem] lg:text-[2.4rem] max-w-[14ch]">
-              Become a mentor.
+              Become a mentor!
             </h2>
             <p className="mt-4 text-[1rem] leading-[1.55] text-white/80 max-w-[34ch] md:min-h-[3.1rem]">
               One form, one Welcome Day, one first-year who stops feeling lost.
@@ -28,7 +28,7 @@ export function CtaSection() {
           <div className="card p-8 md:p-10 flex flex-col">
             <span className="label">Incoming students</span>
             <h2 className="mt-4 display text-[2rem] md:text-[1.75rem] lg:text-[2.4rem] max-w-[14ch]">
-              You&apos;re paired.
+              You're paired!
             </h2>
             <p className="mt-4 text-[1rem] leading-[1.55] text-blue-deep/70 max-w-[34ch] md:min-h-[3.1rem]">
               Nothing to fill out. Watch your inbox before fall quarter.

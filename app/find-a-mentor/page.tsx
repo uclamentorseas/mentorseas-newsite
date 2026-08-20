@@ -114,7 +114,7 @@ export default function FindAMentorPage() {
                   Go find your people.
                 </h2>
                 <p className="mt-4 text-[1rem] leading-[1.55] text-white/80 max-w-[34ch]">
-                  {orgs.length} engineering orgs at UCLA, from race teams to
+                  {orgs.length} engineering organizations at UCLA, from race teams to
                   tech clubs.
                 </p>
                 <div className="mt-8">
