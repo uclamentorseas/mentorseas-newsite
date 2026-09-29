@@ -20,17 +20,17 @@ const portraits = ["/ucla1.jpg", "/ucla2.jpg", "/ucla3.jpg", "/ivan.jpg", "/ucla
 const portrait = (i: number) => portraits[i % portraits.length];
 
 export const team: Member[] = [
-  // ── Co-Presidents ────────────────────────────────────────────
+  // ── President ─────────────────────────────────────────────────
   {
     slug: "julie-huyen-bui",
     name: "Julie Huyen Bui",
-    role: "Co-President",
+    role: "President",
     committee: "Presidency",
     major: "Mechanical Engineering",
     image: "/julie.jpg",
     hometown: "Santa Rosa, CA",
     snippet:
-      "I am one of the Co-Presidents for mentorSEAS! I am also involved with Design Build Fly, Society of Women Engineers, and UCLA Athletics as a Broadcast Operations Assistant (B1G+).",
+      "I am the President of mentorSEAS! I am also involved with Design Build Fly, Society of Women Engineers, and UCLA Athletics as a Broadcast Operations Assistant (B1G+).",
     philosophy:
       "",
     wish:
@@ -38,24 +38,6 @@ export const team: Member[] = [
     spot: "",
     funFact: "I have taken selfies with over 20 NBA players!",
     linkedin: "https://www.linkedin.com/in/juliehuyenbui/"
-  },
-  {
-    slug: "vanessa-tran",
-    name: "Vanessa Tran",
-    role: "Co-President",
-    committee: "Presidency",
-    major: "",
-    image: "/vanessa.JPG",
-    hometown: "",
-    snippet:
-      "I am one of the other co-presidents for this year. I love to read and sail!",
-    philosophy:
-      "",
-    wish:
-      "Always stay curious! There is always something or somewhere to experience, especially in LA",
-    spot: "",
-    funFact: "I have a pet crawfish!",
-    linkedin: "https://www.linkedin.com/in/vanessatra"
   },
 
     // ── Tech ─────────────────────────────────────────────────────

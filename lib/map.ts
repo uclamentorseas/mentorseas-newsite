@@ -221,7 +221,7 @@ export const pins: Pin[] = [
     x: 15,
     y: 15,
     building: "Ackerman Union",
-    mentorSlug: "vanessa-tran",
+    mentorSlug: "julie-huyen-bui",
   },
   {
     id: "eng6-courtyard",

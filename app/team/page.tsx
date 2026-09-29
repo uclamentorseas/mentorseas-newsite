@@ -8,7 +8,7 @@ import { Annotation, CircledPhrase } from "@/components/fun/annotation";
 export const metadata = {
   title: "The Team — mentorSEAS",
   description:
-    "Two co-presidents and three committees — the students who keep mentorSEAS running.",
+    "A president and three committees — the students who keep mentorSEAS running.",
 };
 
 export default function TeamPage() {
@@ -36,8 +36,7 @@ export default function TeamPage() {
           <div className="rule-gold mt-8" />
 
           <p className="mt-8 max-w-[52ch] text-[1.08rem] leading-[1.6] text-blue-deep/75">
-            {team.length} students run mentorSEAS — two co-presidents and three
-            committees.
+            {team.length} students run mentorSEAS — a president and three committees.
           </p>
 
           <div className="mt-14 grid grid-cols-1 sm:grid-cols-3 gap-px bg-line border border-line rounded-xl overflow-hidden">
@@ -52,28 +51,26 @@ export default function TeamPage() {
           </div>
         </section>
 
-        {/* Co-Presidents */}
+        {/* President */}
         <section className="py-24 md:py-32">
           <div className="wrap">
             <div className="flex items-center gap-4">
               <span className="display text-2xl text-blue/40 tabular">01</span>
-              <span className="label">Presidents</span>
+              <span className="label">Leadership</span>
             </div>
 
             <div className="mt-8 flex flex-wrap items-end justify-between gap-6">
               <h2 className="display text-[8vw] md:text-[3.4vw] xl:text-[3rem] max-w-[16ch]">
-                Your co-presidents.
+                Your president.
               </h2>
               <Annotation direction="left" className="hidden md:block mb-2">
-                hover over us!
+                hover over me!
               </Annotation>
             </div>
 
             <div className="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-12 md:gap-x-7">
               {presidents.map((m, i) => (
-                <div key={m.slug} className={i === 0 ? "lg:col-start-2" : ""}>
-                  <MentorCard member={m} index={i} />
-                </div>
+                <MentorCard key={m.slug} member={m} index={i} />
               ))}
             </div>
           </div>
