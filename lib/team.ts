@@ -20,7 +20,7 @@ const portraits = ["/ucla1.jpg", "/ucla2.jpg", "/ucla3.jpg", "/ivan.jpg", "/ucla
 const portrait = (i: number) => portraits[i % portraits.length];
 
 export const team: Member[] = [
-  // ── President ─────────────────────────────────────────────────
+  // ── Presidency ────────────────────────────────────────────────
   {
     slug: "julie-huyen-bui",
     name: "Julie Huyen Bui",
@@ -39,13 +39,11 @@ export const team: Member[] = [
     funFact: "I have taken selfies with over 20 NBA players!",
     linkedin: "https://www.linkedin.com/in/juliehuyenbui/"
   },
-
-    // ── Tech ─────────────────────────────────────────────────────
   {
     slug: "ivan-fang",
     name: "Ivan Fang",
-    role: "Tech Lead",
-    committee: "Tech",
+    role: "Vice President",
+    committee: "Presidency",
     major: "Computer Science",
     image: "/ivan.jpg",
     hometown: "Singapore",
@@ -58,6 +56,26 @@ export const team: Member[] = [
     spot: "Eclipse Gaming Lounge",
     funFact: "I'm an international student from Singapore!",
     linkedin: "https://www.linkedin.com/in/ivan-fang-dev/"
+  },
+
+    // ── Tech ─────────────────────────────────────────────────────
+  {
+    slug: "shaleen-thaker",
+    name: "Shaleen Thaker",
+    role: "Tech Lead",
+    committee: "Tech",
+    major: "Computer Science",
+    image: "/shaleen.jpeg",
+    hometown: "",
+    snippet:
+      "I work on and run the website with the rest of the tech team. I'm also a board member for Bruin Software Engineers!",
+    philosophy:
+      "Life for engineers is waiting outside the classroom. Don't waste any time to get out there and explore what fills you with joy and what you could spend your life doing",
+    wish:
+      "Life for engineers is waiting outside the classroom. Don't waste any time to get out there and explore what fills you with joy and what you could spend your life doing",
+    spot: "",
+    funFact: "My highest step count day was 48000 steps",
+    linkedin: "https://www.linkedin.com/in/shaleen-thaker-a409a4271/"
   },
   {
     slug: "pavan-gudavalli",
@@ -95,30 +113,12 @@ export const team: Member[] = [
     funFact: "I'm pretty good at Minesweeper!",
     linkedin: "https://www.linkedin.com/in/rohan-jones-274bb62b9/"
   },
-  {
-    slug: "shaleen-thaker",
-    name: "Shaleen Thaker",
-    role: "Tech Developer",
-    committee: "Tech",
-    major: "Computer Science",
-    image: "/shaleen.jpeg",
-    hometown: "",
-    snippet:
-      "I work on and run the website with the rest of the tech team. I'm also a board member for Bruin Software Engineers!",
-    philosophy:
-      "Life for engineers is waiting outside the classroom. Don't waste any time to get out there and explore what fills you with joy and what you could spend your life doing",
-    wish:
-      "Life for engineers is waiting outside the classroom. Don't waste any time to get out there and explore what fills you with joy and what you could spend your life doing",
-    spot: "",
-    funFact: "My highest step count day was 48000 steps",
-    linkedin: "https://www.linkedin.com/in/shaleen-thaker-a409a4271/"
-  },
 
   // ── Social & Engagement ──────────────────────────────────────
   {
     slug: "ronak-chadha",
     name: "Ronak Chadha",
-    role: "",
+    role: "Lead",
     committee: "Social & Engagement",
     major: "Computer Science and Engineering",
     image: "/ronak.jpg",
@@ -136,7 +136,7 @@ export const team: Member[] = [
   {
     slug: "alyson-jeong",
     name: "Alyson Jeong",
-    role: "",
+    role: "Member",
     committee: "Social & Engagement",
     major: "Civil Engineering",
     image: "/alyson.jpg",
@@ -154,7 +154,7 @@ export const team: Member[] = [
   {
     slug: "kana-park",
     name: "Kana Park",
-    role: "",
+    role: "Member",
     committee: "Social & Engagement",
     major: "Bioengineering",
     image: "/kana.jpg",
@@ -172,7 +172,7 @@ export const team: Member[] = [
   {
     slug: "savinna-mattar",
     name: "Savinna Mattar",
-    role: "",
+    role: "Member",
     committee: "Social & Engagement",
     major: "Civil Engineering",
     image: "/savinna.jpeg",
@@ -192,7 +192,7 @@ export const team: Member[] = [
   {
     slug: "lily-sarkissian",
     name: "Lily Sarkissian",
-    role: "",
+    role: "Lead",
     committee: "Academic & Growth",
     major: "Bioengineering",
     image: "/lily.jpg",
@@ -210,7 +210,7 @@ export const team: Member[] = [
   {
     slug: "sagarika-manian",
     name: "Sagarika Manian",
-    role: "",
+    role: "Member",
     committee: "Academic & Growth",
     major: "Materials Engineering",
     image: "/sagarika.jpg",
@@ -228,7 +228,7 @@ export const team: Member[] = [
   {
     slug: "caroline-chen",
     name: "Caroline Chen",
-    role: "",
+    role: "Member",
     committee: "Academic & Growth",
     major: "Electrical Engineering",
     image: "/caroline.JPG",
@@ -246,7 +246,7 @@ export const team: Member[] = [
   {
     slug: "dishti-wadhwani",
     name: "Dishti Wadhwani",
-    role: "",
+    role: "Member",
     committee: "Academic & Growth",
     major: "Chemical Engineering",
     image: "/dishti.jpg",

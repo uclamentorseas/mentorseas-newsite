@@ -8,7 +8,7 @@ import { Annotation, CircledPhrase } from "@/components/fun/annotation";
 export const metadata = {
   title: "The Team — mentorSEAS",
   description:
-    "A president and three committees — the students who keep mentorSEAS running.",
+    "A president, a vice president, and three committees — the students who keep mentorSEAS running.",
 };
 
 export default function TeamPage() {
@@ -36,7 +36,7 @@ export default function TeamPage() {
           <div className="rule-gold mt-8" />
 
           <p className="mt-8 max-w-[52ch] text-[1.08rem] leading-[1.6] text-blue-deep/75">
-            {team.length} students run mentorSEAS — a president and three committees.
+            {team.length} students run mentorSEAS — a president, a vice president, and three committees.
           </p>
 
           <div className="mt-14 grid grid-cols-1 sm:grid-cols-3 gap-px bg-line border border-line rounded-xl overflow-hidden">
@@ -51,7 +51,7 @@ export default function TeamPage() {
           </div>
         </section>
 
-        {/* President */}
+        {/* Presidency */}
         <section className="py-24 md:py-32">
           <div className="wrap">
             <div className="flex items-center gap-4">
@@ -61,7 +61,7 @@ export default function TeamPage() {
 
             <div className="mt-8 flex flex-wrap items-end justify-between gap-6">
               <h2 className="display text-[8vw] md:text-[3.4vw] xl:text-[3rem] max-w-[16ch]">
-                Your president.
+                Your President &amp; VP.
               </h2>
               <Annotation direction="left" className="hidden md:block mb-2">
                 hover over me!
