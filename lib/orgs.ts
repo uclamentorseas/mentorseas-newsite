@@ -51,14 +51,6 @@ export const orgs: Org[] = [
     website: "https://aisafetyatucla.org/",
   },
   {
-    name: "American Indian Science and Engineering Society (AISES) & Bearospace",
-    blurb:
-      "The only professional society created by and for Native people in STEM. Part of the CEED Tri-Org with SOLES and NSBE; its Bearospace project builds and launches rockets.",
-    categories: ["Identity", "Build", "Learn"],
-    majors: [],
-    website: "https://sites.google.com/g.ucla.edu/ucla-aises/about-us",
-  },
-  {
     name: "American Institute of Aeronautics and Astronautics (AIAA)",
     blurb:
       "Company info sessions, workshops, facility tours, and the front door to Rocket Project, Design Build Fly, and UAS.",
@@ -107,14 +99,6 @@ export const orgs: Org[] = [
     website: "https://www.asmebruins.com/",
   },
   {
-    name: "Arab American Association of Engineers and Architects (AAAEA)",
-    blurb:
-      "A professional Arab American association dedicated to helping, strengthening, and empowering its members.",
-    categories: ["Identity", "Industry"],
-    majors: [],
-    website: "https://aaaeaca.org/bruin-student-chapter/",
-  },
-  {
     name: "Association for Computing Machinery (ACM)",
     blurb:
       "The umbrella for everything CS. Hack, AI, Cyber, Studio, Teach LA, ICPC — pick the room that already feels like home.",
@@ -129,14 +113,6 @@ export const orgs: Org[] = [
     categories: ["Research", "Learn", "Industry"],
     majors: ["Bioengineering"],
     website: "https://bmes.seas.ucla.edu",
-  },
-  {
-    name: "Blockchain at UCLA",
-    blurb:
-      "Law, business, and undergraduate students educating and engaging the Los Angeles community on blockchain technology.",
-    categories: ["Research", "Learn"],
-    majors: [],
-    website: "https://www.blockchainatucla.com/",
   },
   {
     name: "Bruin AI",
@@ -161,14 +137,6 @@ export const orgs: Org[] = [
     categories: ["Build", "Research"],
     majors: [],
     website: "https://bruinhomesolutions.com/",
-  },
-  {
-    name: "Bruin Entrepreneurs (BE)",
-    blurb:
-      "Empowering students from every major to turn ideas into real ventures — workshops, networking, and connections to startups, accelerators, and investors.",
-    categories: ["Industry", "Build"],
-    majors: [],
-    website: "https://uclaubs.com/bruin-entrepreneurs",
   },
   {
     name: "Bruin Racing",
@@ -219,20 +187,12 @@ export const orgs: Org[] = [
     website: "https://bruinspace.com",
   },
   {
-    name: "Building Engineers and Mentors (BEAM)",
+    name: "Bruins Encouraging Active Minds (BEAM)",
     blurb:
       "Bringing STEM activities to underserved K-8 schools across Los Angeles.",
     categories: ["Learn"],
     majors: [],
     website: "https://beam.ucla.edu/",
-  },
-  {
-    name: "California Geotechnical Engineering Association (CalGeo)",
-    blurb:
-      "Geotechnical engineering through info sessions, field trips, student projects, and socials.",
-    categories: ["Learn", "Industry"],
-    majors: ["Civil & Environmental"],
-    website: "https://www.calgeobruins.org/",
   },
   {
     name: "Chi Epsilon (XE)",
@@ -257,14 +217,6 @@ export const orgs: Org[] = [
     categories: ["Compete", "Research", "Build"],
     majors: ["Bioengineering", "Electrical & Computer", "Computer Science"],
     website: "https://www.cruxucla.com/",
-  },
-  {
-    name: "Design Create Solar",
-    blurb:
-      "A multidisciplinary club building solar solutions to combat inequity — refugee-camp roof installations, sun-tracking campus chargers, solar-integrated hydroponics.",
-    categories: ["Build", "Learn"],
-    majors: [],
-    website: "https://www.esuc.ucla.edu/ewd-2020/solar/",
   },
   {
     name: "Earthquake Engineering Research Institute & SEAOSC (EERI-SEAOSC)",
@@ -332,13 +284,6 @@ export const orgs: Org[] = [
     website: "https://www.exploretech.la/",
   },
   {
-    name: "GLITCH",
-    blurb: "UCLA's Hackathon Club.",
-    categories: ["Build", "Compete", "Learn"],
-    majors: ["Computer Science"],
-    website: "https://linktr.ee/glitchatucla",
-  },
-  {
     name: "IEEE Women Advancing Technology through Teamwork (WATT)",
     blurb:
       "A technical advocacy group for women and minorities in electrical engineering, run as a branch of IEEE.",
@@ -361,30 +306,6 @@ export const orgs: Org[] = [
     categories: ["Industry", "Learn"],
     majors: ["Civil & Environmental"],
     website: "https://iteucla.square.site/",
-  },
-  {
-    name: "International Society for Pharmaceutical Engineering (ISPE)",
-    blurb:
-      "Networking with academic and industry professionals across biotech, biomedical, and pharma.",
-    categories: ["Industry", "Research"],
-    majors: ["Chemical Engineering", "Bioengineering"],
-    website: "https://ucla-ispe.weebly.com/",
-  },
-  {
-    name: "Korean-American Scientists and Engineers Association (KSEA)",
-    blurb:
-      "Leadership, volunteering, and a network reaching every KSEA chapter in Southern California.",
-    categories: ["Identity", "Industry"],
-    majors: [],
-    website: "https://bruinksea.weebly.com/",
-  },
-  {
-    name: "LA Blueprint",
-    blurb:
-      "Student developers and designers work with nonprofits to deliver applications that best suits their needs.",
-    categories: ["Build", "Industry"],
-    majors: ["Computer Science"],
-    website: "https://www.lablueprint.org",
   },
   {
     name: "LA Hacks",
@@ -423,14 +344,6 @@ export const orgs: Org[] = [
     website: "https://linktr.ee/MentorSEAS",
   },
   {
-    name: "Music Art Design Engineering (MADE)",
-    blurb:
-      "Where the technical side of campus and the creative side actually build something together.",
-    categories: ["Build"],
-    majors: [],
-    website: "https://madeucla.org/"
-  },
-  {
     name: "National Society of Black Engineers (NSBE)",
     blurb:
       "Mentorship, conventions, and a whiteboard that holds the year together.",
@@ -445,14 +358,6 @@ export const orgs: Org[] = [
     categories: ["Build", "Industry"],
     majors: ["Computer Science"],
     website: "https://www.novaforgood.org/",
-  },
-  {
-    name: "Out in STEM (oSTEM)",
-    blurb:
-      "Community and professional development for LGBTQ+ students in science, technology, engineering, and mathematics.",
-    categories: ["Identity", "Industry"],
-    majors: [],
-    website: "https://ostem.org/",
   },
   {
     name: "Phi Sigma Rho",
@@ -476,14 +381,6 @@ export const orgs: Org[] = [
     categories: ["Research", "Learn"],
     majors: ["Computer Science", "Electrical & Computer"],
     website: "https://www.qcsa-ucla.org/"
-  },
-  {
-    name: "QWER Hacks",
-    blurb:
-      "UCLA's LGBTQIA+ hackathon — three days each winter, built by students for students.",
-    categories: ["Build", "Identity", "Compete"],
-    majors: ["Computer Science"],
-    website: "https://www.qwerhacks.com/",
   },
   {
     name: "Rocket Project at UCLA",
@@ -530,6 +427,14 @@ export const orgs: Org[] = [
     website: "https://tbp.seas.ucla.edu/",
   },
   {
+    name: "Themed Entertainment Association (TEA)",
+    blurb:
+      "Connecting students to the themed entertainment industry — theme parks, zoos, haunts, museums, and pop-ups — through workshops, guest speakers, networking, and field trips.",
+    categories: ["Industry", "Learn"],
+    majors: [],
+    website: "https://community.ucla.edu/studentorg/5494",
+  },
+  {
     name: "Theta Tau",
     blurb:
       "A co-ed, professional engineering fraternity dedicated to the principles of brotherhood, professionalism, and service.",
@@ -557,5 +462,5 @@ export const featured: Org[] = [
   "Rocket Project at UCLA",
   "National Society of Black Engineers (NSBE)",
   "Bruin Spacecraft Group (BSG)",
-  "LA Blueprint",
+  "Engineers Without Borders (EWB)",
 ].map((n) => orgs.find((o) => o.name === n)!);
